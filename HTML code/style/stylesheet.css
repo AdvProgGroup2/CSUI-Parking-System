@@ -1,0 +1,37 @@
+/* CSS for CSUI Parking System */
+
+body{
+	text-align: center;
+	font-family: "Gotham";
+}
+
+a.links{
+	text-decoration: none;
+	color: black;
+	font-family: "Gotham";
+}
+
+a:hover{
+	text-decoration: none;
+	color: turquoise;
+}
+
+footer.below{
+	font-size: small;
+}
+
+#griduno{
+	background-color: #36D7B7;
+	height: 200px;
+}
+
+#griddos{
+	background-color: #86E2D5;
+	height: 200px;
+}
+
+@font-face {
+    font-family: "Gotham";
+    src: url("fonts/Gotham/Gotham-Book.otf");
+}
+
