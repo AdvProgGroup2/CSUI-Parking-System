@@ -44,16 +44,26 @@ public class ConnectDB {
 	}
 	
 	
-	public void insertData(String npm, String username, String password, String full_name, String role) {
+	public boolean insertData(String npm, String username, String password, String full_name, String role) {
 		try {
-			String query = "Insert into Member(npm,username,password,full_name, role) "+
+			String checkSql = "Select count(*) from member where username = '"+username+"'";
+	    	rs = st.executeQuery(checkSql);
+	    	rs.next();
+	    	if ( rs.getInt(1) == 0) {
+	    		String query = "Insert into Member(npm,username,password,full_name, role) "+
 					       "values('"+npm+"','"+username+"','"+password+"','"+full_name+"','"+role+"')";						
-			st.executeUpdate(query);
-			System.out.println(full_name+" is inserted into the Database!");
-			
-		} catch(Exception ex) {
-			System.out.println(ex);
-		}
+	    		st.executeUpdate(query);
+	    		System.out.println(username+" is inserted into the Database!");
+	    		System.out.println("Congratulations, you're now member of CSUI parking privileges, " + username + "!\n");
+	    		return true;
+	    	} else {
+	    	  System.out.println(username+ " already exists! Please choose another one.");
+	    	  return false;
+	    	}
+	    } catch(Exception ex) {
+	    	System.out.println(ex);
+	    	return false;
+	    }
 	}
 		
 	

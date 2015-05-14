@@ -1,0 +1,17 @@
+Register page
+
+@author yohanafransiska
+
+This is the register page that I have converted from the PHP file that
+I did in the first sprint. Now the register page has already connected with the
+database. It validates whether the users filled the information. If it is empty,
+the program will ask for the user to fill in their information and not let any
+of the field empty. 
+
+Based on the database, the primary key is the NPM therefore there should not be 
+any duplication for the NPM. However, I added another information that also must
+be unique which is the username. It is validated in the 'insertdata' method from
+the connectDb class. If the username is duplicated also, they must choose a new
+username that does not already exist in the database.
+
+I have made a connection between the Java file and the database, therefore whenever their is a student/staff that registers, their information is instantly inserted into the database. I also made a method that prevents any information duplication based on the data inserted in the database.
