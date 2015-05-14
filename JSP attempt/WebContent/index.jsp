@@ -1,20 +1,21 @@
-<!DOCTYPE html>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-
 <head>
 	<title>CSUI Parking System</title>
-	<meta charset="utf-8">
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 	<meta name = "description" content="Web-based parking system for fasilkom UI">
 	<meta name = "author" content="Tsabita Vera Cyavrilla, Yanuar Wicaksana, Hakeem Radiansyah Daud, Abicantya Prasidya Sophie, Yohana Fransiska Kanisia Hadiati">
-	<link href = "style/Bootstrap/css/bootstrap.min.css" rel = "stylesheet">
-	<link href = "style/stylesheet.css" rel="stylesheet">
-	<link href = "style/FontAwesome/css/font-awesome.min.css" rel = "stylesheet">
-	<script src = "style/Bootstrap/js/bootstrap.min.js"></script>
+	<link href = "<%=request.getContextPath()%>/style/Bootstrap/css/bootstrap.min.css" rel = "stylesheet">
+	<link href = "<%=request.getContextPath()%>/style/stylesheet.css" rel="stylesheet">
+	<link href = "<%=request.getContextPath()%>/style/FontAwesome/css/font-awesome.min.css" rel = "stylesheet">
+	<script src = "<%=request.getContextPath()%>/style/Bootstrap/js/bootstrap.min.js"></script>
 </head>
 
 <body>
 	<div id = "top">
-		<img src = "assets/carlogo.png" alt = "csuiparkingsystemlogo">
+		<img src = "${pageContext.request.contextPath}/img/carlogo.png" alt = "csuiparkingsystemlogo">
 		<h1> CSUI PARKING SYSTEM </h1>
 	</div>
 	
@@ -36,7 +37,7 @@
 			<span id="directtext">Show Directions</span>
 		</div>
 		<div class = "col-xs-15">
-			<a class = "signout" href ="index.html"><button class = "btn btn-default btn-circle btn-lg"><i class ="fa fa-arrow-circle-left fa-lg"></i></button></a>
+			<a class = "signout"><button class = "btn btn-default btn-circle btn-lg"><i class ="fa fa-arrow-circle-left fa-lg"></i></button></a>
 			<span id="signouttext">Log Out</span>
 		</div>
 	</div>
