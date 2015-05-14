@@ -80,6 +80,23 @@ public class ConnectDB {
 	    	System.out.println(ex);
 	    }
 	}
-
-
+	    
+	    public boolean checklogin(String username, String password){
+	    	try {
+		    	String checkSql = "select count(*) from member where username = '"+username+"' and password = '"+password+"'";
+		    	rs = st.executeQuery(checkSql);
+		    	rs.next();
+		    	if ( rs.getInt(1) == 0) {
+		    	  System.out.println("Username or Password incorrect. Please try again.");
+		    	  return false;
+		    	} else {
+		    	  System.out.println(username+ " is logged in.");
+		    	  return true;
+		    	}
+		    } catch(Exception ex) {
+		    	System.out.println(ex);
+		    	return true;
+		    }   
+		}
 }
+

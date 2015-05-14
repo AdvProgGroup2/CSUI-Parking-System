@@ -1,6 +1,6 @@
 Evaluation for Register in Yanuar’s main program.
 
 @author yohanafransiska
- I have merged my register page codes with Yanuar's main program. Therefore, Yanuar's dummy register now has validation for when the field is empty and also connection with the database so that when there is an npm or username that is already exist in the database, that person cannot register with that npm or username.
+I have merged my register page codes with Yanuar's main program. Therefore, Yanuar's dummy register now has validation for when the field is empty and also connection with the database so that when there is an npm or username that is already exist in the database, that person cannot register with that npm or username.
 
-If the user inserts an empty field, the program will keep asking until they insert the field with the proper information.
+I also merged Cantya’s register page codes with Yanuar’s main program and adjusted the existing ConnectDB to Cantya’s code. I added the method CheckLogin in ConnectDB for the user’s log in validation based on Cantya’s code. I also made adjustments so that the Cantya’s code and Yanuar’s code works well together. I also connected the database with the java code from cantya, yanuar and my own code so that every validation can be based on  the database.

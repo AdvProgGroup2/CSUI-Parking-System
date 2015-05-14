@@ -25,11 +25,16 @@ public class MainProgram {
  * register now has validation for when the field is empty and also connection with the database
  * so that when there is an npm or username that is already exist in the database, that person
  * cannot register with that npm or username.
+ * 
+ * I also merged Cantya’s register page codes with Yanuar’s main program and adjusted the existing 
+ * ConnectDB to Cantya’s code. I added the method CheckLogin in ConnectDB for the user’s log in
+ * validation based on Cantya’s code. I also made adjustments so that the Cantya’s code and Yanuar’s
+ * code works well together. I also connected the database with the java code from cantya, yanuar and
+ * my own code so that every validation can be based on  the database.
  */
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		ConnectDB databaseconnect = new ConnectDB();
-		LinkedList Membership = new LinkedList();
 		ParkingLot lot = new ParkingLot();
 		Scanner scan = new Scanner(System.in);
 		
@@ -48,19 +53,20 @@ public class MainProgram {
 			int mainmenu = scan.nextInt();
 			
 			if (mainmenu == 1){
-				scan.nextLine();
-				System.out.println("Please enter your username:");
-				String username = scan.nextLine();
-				
-				System.out.println("Please enter your password:");
-				String password = scan.nextLine();
-				
+				boolean login = true;
+
+				if (login == true){					
+					scan.nextLine();
+					System.out.println("Please enter your username.");
+					String username = scan.nextLine();
+					
+					System.out.println("Please enter your password.");
+					String password = scan.nextLine();
+					
 				UserLogin userlogin = new UserLogin(username, password);
-				if (Membership.contains(userlogin)){
-					System.out.println("Welcome Back " + username + "!\n");
-					boolean checkinstat = false;
-					int parkid = 0;
-					boolean valid2 = true;
+				boolean valid2 = databaseconnect.checklogin(username, password);
+		    	boolean checkinstat = false;
+		    	int parkid = 0;
 					while(valid2){
 						System.out.println("What do you want to do?");
 						System.out.println("1. Check Parking Space Availability");
