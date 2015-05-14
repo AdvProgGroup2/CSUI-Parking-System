@@ -1,0 +1,6 @@
+Evaluation for Register in Yanuar’s main program.
+
+@author yohanafransiska
+ I have merged my register page codes with Yanuar's main program. Therefore, Yanuar's dummy register now has validation for when the field is empty and also connection with the database so that when there is an npm or username that is already exist in the database, that person cannot register with that npm or username.
+
+If the user inserts an empty field, the program will keep asking until they insert the field with the proper information.

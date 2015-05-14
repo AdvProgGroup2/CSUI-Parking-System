@@ -3,6 +3,8 @@ package Parking;
 import java.util.*;
 
 import Parking.User;
+import Parking.ConnectDB;
+import Parking.UserLogin;
 /**
  * 
  * @author yanuarwicaksana
@@ -10,17 +12,29 @@ import Parking.User;
  * Comments: This class represent the main program of our system. This program interact with the user input and
  * 			 handles it based on certain events. It only containes simple UI and have a few dummy features that only
  * 			 included in purposes to test the validity of the code. 
+ * 
+ * 
  */
 public class MainProgram {
 
+/**
+ * 	
+ * @author yohanafransiska
+ * 
+ * Comments: I merged my register page codes with Yanuar's main program. Therefore, Yanuar's dummy
+ * register now has validation for when the field is empty and also connection with the database
+ * so that when there is an npm or username that is already exist in the database, that person
+ * cannot register with that npm or username.
+ */
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
+		ConnectDB databaseconnect = new ConnectDB();
 		LinkedList Membership = new LinkedList();
 		ParkingLot lot = new ParkingLot();
 		Scanner scan = new Scanner(System.in);
 		
 		InitParkingSpace(lot);
-		InitMember(Membership);
+//		InitMember(Membership);
 		
 		System.out.println("Welcome to CSUI Parking System v.01");
 		System.out.println("This Program Represents Simple Application of Parking System \n");
@@ -41,8 +55,8 @@ public class MainProgram {
 				System.out.println("Please enter your password:");
 				String password = scan.nextLine();
 				
-				User user = new User(username, password);
-				if (Membership.contains(user)){
+				UserLogin userlogin = new UserLogin(username, password);
+				if (Membership.contains(userlogin)){
 					System.out.println("Welcome Back " + username + "!\n");
 					boolean checkinstat = false;
 					int parkid = 0;
@@ -78,15 +92,31 @@ public class MainProgram {
 				} else System.out.println("Incorrect Username and Password combination!\n");
 			} else if (mainmenu == 2){
 				scan.nextLine();
-				System.out.println("Please enter the designated username:");
-				String Username = scan.nextLine();
+				System.out.println("Please enter your full name.");
+				String full_name = scan.nextLine();
+
+				System.out.println("Please enter your role.");
+				String role = scan.nextLine();
+				
+				System.out.println("Please enter your unique identity (NPM or Staff Identity Number).");
+				String npm = scan.nextLine();
+				
+				System.out.println("Please enter your desired username.");
+				String username = scan.nextLine();
 				
 				System.out.println("Please enter the password:");
-				String Password = scan.nextLine();
+				String password = scan.nextLine();
 				
-				User Users = new User(Username,Password);
-				Membership.add(Users);
-				System.out.println("Congratulations, you're now member of CSUI parking privileges " + Username + "!\n");
+				if(!(full_name.equals("") || role.equals("") || npm.equals("") || username.equals("") ||
+						password.equals(""))){
+					User Users = new User(full_name, role, npm, username, password);
+				
+				
+					databaseconnect.insertData(npm, username, password, full_name, role);
+				} else{
+					System.out.println("Incorrect Input. Please try again!");
+				}
+				
 			} else valid = false;
 		}
 		
@@ -100,18 +130,18 @@ public class MainProgram {
 		}
 	}
 	
-	public static void InitMember(Collection Membership){
-		User user1 = new User("Yanuar.Wicaksana", "helloworld");
-		User user2 = new User("Tsabita.Cyavrilla", "group2rules");
-		User user3 = new User("Hakeem.Daud", "Gear4th");
-		User user4 = new User("Yohanna.Kanisia", "KoreanDrama");
-		User user5 = new User("Abicantya.Sophie", "newgirl");
-		
-		Membership.add(user1);
-		Membership.add(user2);
-		Membership.add(user3);
-		Membership.add(user4);
-		Membership.add(user5);
-	}
+//	public static void InitMember(Collection Membership){
+//		User user1 = new User("Yanuar.Wicaksana", "helloworld");
+//		User user2 = new User("Tsabita.Cyavrilla", "group2rules");
+//		User user3 = new User("Hakeem.Daud", "Gear4th");
+//		User user4 = new User("Yohanna.Kanisia", "KoreanDrama");
+//		User user5 = new User("Abicantya.Sophie", "newgirl");
+//		
+//		Membership.add(user1);
+//		Membership.add(user2);
+//		Membership.add(user3);
+//		Membership.add(user4);
+//		Membership.add(user5);
+//	}
 
 }
