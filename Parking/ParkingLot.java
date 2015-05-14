@@ -30,6 +30,11 @@ public class ParkingLot {
 		}
 	}
 	*/
+	
+	public List getparkinglist(){
+		return parkinglist;
+	}
+	
 	public void addParkingSpace(ParkingSpace space){
 		if (!idlist.contains(space.getId())){
 			parkinglist.add(space);
