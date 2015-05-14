@@ -30,7 +30,7 @@ public class connectDB {
 //	            	System.out.println("Username or Password incorrect. Please try again.");
 //	            }
 	            
-	            checkMember(username);
+	            checkMember(username, password);
 	        }
 	        catch (Exception e) {
 	            e.printStackTrace();
@@ -64,14 +64,14 @@ public class connectDB {
 //		}
 //	}
 
-	public void checkMember(String username)
+	public void checkMember(String username, String password)
 	{
 	    try {
-	    	String checkSql = "select count(*) from member where username = '"+username+"'";
+	    	String checkSql = "select count(*) from member where username = '"+username+"' and password = '"+password+"'";
 	    	rs = st.executeQuery(checkSql);
 	    	rs.next();
 	    	if ( rs.getInt(1) == 0) {
-	    	  System.out.println(username+" doesn't exist. Please try again.");
+	    	  System.out.println("Username or Password incorrect. Please try again.");
 	    	} else {
 	    	  System.out.println(username+ " is logged in.");
 	    	}
