@@ -10,6 +10,15 @@
 	<link href = "style/stylesheet.css" rel="stylesheet">
 	<link href = "style/FontAwesome/css/font-awesome.min.css" rel = "stylesheet">
 	<script src = "style/Bootstrap/js/bootstrap.min.js"></script>
+	<script type="text/javascript">
+    function toggle_visibility(id) {
+       var e = document.getElementById(id);
+       if(e.style.display == 'block')
+          e.style.display = 'none';
+       else
+          e.style.display = 'block';
+    }
+	</script>
 </head>
 
 <body>
@@ -20,11 +29,11 @@
 	
 	<div id = "nav">
 		<div class = "col-xs-15">
-			<a class = "home"><button class = "btn btn-default btn-circle btn-lg"><i class ="fa fa-home fa-lg"></i></button></a>
+			<a href ="#" class = "home"><button class = "btn btn-default btn-circle btn-lg"><i class ="fa fa-home fa-lg"></i></button></a>
 			<span id="hometext">Home</span>
 		</div>
 		<div class = "col-xs-15">
-			<a class = "checkin"><button class = "btn btn-default btn-circle btn-lg"><i class ="fa fa-map-marker fa-lg"></i></button></a>
+			<a href ="#" onclick="toggle_visibility('checkinmenu');" class = "checkin"><button class = "btn btn-default btn-circle btn-lg"><i class ="fa fa-map-marker fa-lg"></i></button></a>
 			<span id="checkintext">Check-in</span>
 		</div>
 		<div class = "col-xs-15">
@@ -43,34 +52,30 @@
 	<br /><br /><br /><br /><br />
 	
 	<div id = "availability">
-		<div class = "col-md-4" id = "carsicons">
-			<br /><br />
+		<div class = "col-md-6 col-sm-height" id = "carsicons">
+			<br />
 			<h1 id ="carz"><i class = "fa fa-car"></i> <i class = "fa fa-cab"></i> <i class = "fa fa-bus"></i></h1>
 		</div>
-		<div class = "col-md-8" id = "spots">
-			<h3>Available Parking Spot</h3>
-			<h2>50</h2>
-			<h5>Spots Available</h5>
+		<div class = "col-md-6 col-sm-height" id = "spots">
+			<h2>Available Parking Spot</h2>
+			<h1 id = "avanumber">30</h1>
+			<h4>Spots Available</h4>
 		</div>
 	</div>
-	<div id = "menus">
-		<div class = "col-md-6 col-sm-height" id = "griduno">
-			<h1><i class = "fa fa-map-marker"></i></h1>
-			<h3>Check-in</h3><br />
-			<button class = "btn btn-success">Check in</button>
-			<button class = "btn btn-danger">Check out</button>
-			<br/><br/>
+	
+	<div id = "checkinmenu">
+		<div class = "col-md-6 col-sm-height" id ="gridone">
+			<h2><i class = "fa fa-map-marker"></i> Check-in to parking slot</h2>
 		</div>
-		<div class = "col-md-6 col-sm-height" id = "griddos">
-			<h1><i class = "fa fa-car"></i></h1>
-			<h3>Available Parking Spot</h3>
-			<h2>50</h2>
-			<h5>Spots Available</h5>
+		<div class = "col-md-6 col-sm-height" id = "gridtwo">
+			<button class = "btn btn-success"><h3><i class = "fa fa-check"></i> CHECK IN</h3></button>  
+			<button class = "btn btn-danger"><h3><i class = "fa fa-remove"></i> CHECK OUT</h3></button>
 		</div>
 	</div>
 	
 	<div id = "map">
-		<iframe src="https://www.google.com/maps/d/u/0/embed?mid=zhv4Hz3WXoN4.kfDnfZAiSom8" width="640" height="480"></iframe>
+		<br />
+<!-- 		<iframe src="https://www.google.com/maps/d/u/0/embed?mid=zhv4Hz3WXoN4.kfDnfZAiSom8" width="640" height="480"></iframe> -->
 	</div>
 	
 	<br /><br />

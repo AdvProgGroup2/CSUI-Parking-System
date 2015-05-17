@@ -20,14 +20,48 @@ footer.below{
 	font-size: small;
 }
 
-#griduno{
-	background-color: #36D7B7;
-	height: 200px;
+#gridone{
+	text-align: right;
+}
+#gridtwo{
+	text-align: left;
 }
 
-#griddos{
-	background-color: #86E2D5;
+#spots{
+	text-align: center;
 	height: 200px;
+}
+#carsicons{
+	text-align: center;
+	height: 200px;
+}
+#carz{
+	font-size: 50pt;
+	color: #336E7B;
+	text-align: center;
+}
+
+#avanumber{
+	color: #65C6BB;
+}
+
+/* responsive css */
+@media (min-width: 768px) and (max-width:1200px){
+	#gridone{
+		text-align: center;
+	}
+	#gridtwo{
+		text-align: center;
+	}
+}
+
+@media (min-width: 320px){
+	#gridone{
+		text-align: center;
+	}
+	#gridtwo{
+		text-align: center;
+	}
 }
 
 .col-xs-15,
@@ -44,8 +78,8 @@ footer.below{
     width: 20%;
     float: left;
 }
-@media (min-width: 768px) {
-.col-sm-15 {
+@media (max-width: 768px) {
+	.col-sm-15 {
         width: 20%;
         float: left;
     }
@@ -93,15 +127,11 @@ footer.below{
 	text-align: center;
 }
 
-#carz{
-	font-size: 50pt;
+#logtitle{
+	color: #336E7B;
 }
-#carsicons{
-	height: 200px;
-}
-#spots{
-	text-align: left;
-	height: 200px;
+#registertitle{
+	color: #336E7B;
 }
 
 #hometext{
@@ -119,6 +149,11 @@ footer.below{
 #signouttext{
 	display: none;
 }
+
+#checkinmenu{
+	display: none;
+}
+
 .home:hover + #hometext{
 	display: block;
 }
