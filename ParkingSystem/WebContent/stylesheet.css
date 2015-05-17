@@ -2,13 +2,13 @@
 
 body{
 	text-align: center;
-	font-family: "Gotham";
+	font-family: "Gotham-Book";
 }
 
 a.links{
 	text-decoration: none;
 	color: black;
-	font-family: "Gotham";
+	font-family: "Gotham-Book";
 }
 
 a:hover{
@@ -177,7 +177,7 @@ footer.below{
 }
 
 @font-face {
-    font-family: "Gotham";
-    src: url("fonts/Gotham/Gotham-Book.otf");
+    font-family: "Gotham-Book";
+    src: url("Gotham-Book.otf");
 }
 

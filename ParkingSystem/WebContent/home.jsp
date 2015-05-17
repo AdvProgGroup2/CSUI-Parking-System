@@ -53,39 +53,9 @@
 			<span id="hometext">Home</span>
 		</div>
 		<div class = "col-xs-15">
-			<% if(request.getParameter("checkin") != null){
-				int id = (int) Math.random() * 30 + 1;
-				lot.checkin(new ParkingSpace(id));
-				String ids = Integer.toString(id);
-				session.setAttribute("checkstatus", "yes");
-				session.setAttribute("checklot", ids);
-			}
-			
-			%>
-			<form name="form1" method="post"> 
-			<a class = "checkin"><button class = "btn btn-default btn-circle btn-lg" onclick="CheckIn()"><i class ="fa fa-map-marker fa-lg"></i></button></a>
+			<a class = "checkin" href = "#" onclick="toggle_visibility('checkinmenu')"><button class = "btn btn-default btn-circle btn-lg"><i class ="fa fa-map-marker fa-lg"></i></button></a>
 			<span id="checkintext">Check-in</span>
-			<input type ="hidden" name="checkin">
-<!-- 			<input type = "hidden" name ="checkout"> -->
- 			</form> 
 		</div>
-		<!--  <div class = "col-xs-15"> -->
-			<% //if(request.getParameter("checkout") != null){
-				//if(session.getAttribute("checkstatus") == "yes"){
-					//int idout = Integer.parseInt(((String) session.getAttribute("checklot")));
-					//lot.checkout(new ParkingSpace(idout));
-					//session.setAttribute("checkstatus", null);
-					//session.setAttribute("checklot", null);
-				//}
-			//}
-			
-			%>
-<!-- 			<form name="form2" method="post">  -->
-<!-- 			<a class = "checkout"><button class = "btn btn-default btn-circle btn-lg" onclick="CheckOut()"><i class ="fa fa-map-marker fa-lg"></i></button></a> -->
-<!-- 			<span id="checkouttext">Check-out</span> -->
-<!-- 			<input type ="hidden" name="checkout"> -->
-<!--  			</form>  -->
-<!-- 		</div> -->
 		<div class = "col-xs-15">
 			<a class = "booking"><button class = "btn btn-default btn-circle btn-lg"><i class ="fa fa-car fa-lg"></i></button></a>
 			<span id="booktext">Booking</span>
@@ -116,13 +86,37 @@
 		</div>
 	</div>
 	
-	<div id = "checkinmenu" style="display:none;">
+	<div id = "checkinmenu">
 		<div class = "col-md-6 col-sm-height" id ="gridone">
 			<h2><i class = "fa fa-map-marker"></i> Check-in to parking slot</h2>
 		</div>
 		<div class = "col-md-6 col-sm-height" id = "gridtwo">
-			<button class = "btn btn-success"><h3><i class = "fa fa-check"></i> CHECK IN</h3></button>  
-			<button class = "btn btn-danger"><h3><i class = "fa fa-remove"></i> CHECK OUT</h3></button>
+			<% if(request.getParameter("check-in") != null){
+				int id = (int) Math.random() * 30 + 1;
+				lot.checkin(new ParkingSpace(id));
+				String ids = Integer.toString(id);
+				session.setAttribute("checkstatus", "yes");
+				session.setAttribute("checklot", ids);
+			}
+			%>
+			<form name="form1" method="post">
+				<button class = "btn btn-success" onclick="CheckIn()"><h3><i class = "fa fa-check"></i> CHECK IN</h3></button>
+				<input type ="hidden" name="check-in">
+ 			</form>
+ 			
+			<% if(request.getParameter("check-out") != null){
+				if(session.getAttribute("checkstatus") == "yes"){
+					int idout = Integer.parseInt(((String) session.getAttribute("checklot")));
+					lot.checkout(new ParkingSpace(idout));
+					session.setAttribute("checkstatus", null);
+					session.setAttribute("checklot", null);
+				}
+			}
+			%>
+ 			<form name = "form2" method = "post">
+				<button class = "btn btn-danger" onclick="CheckOut()"><h3><i class = "fa fa-remove"></i> CHECK OUT</h3></button>
+				<input type = "hidden" name = "check-out">
+			</form>
 		</div>
 	</div>
 	
@@ -137,16 +131,12 @@
 		function CheckIn(){
 			document.form1.checkin.value = "check in"
 			form1.submit()
-// 			document.getElementById("checkintext").innerHTML = "Check-out"
 		}
 		
 		function CheckOut(){
 			document.form2.checkout.value = "check out"
 			form2.submit()
 		}
-	
-	
-	
 	</script>
 	<footer id = "below" class="col-md-12">
 		<p>Copyright 2015. A project by Group 2 for Advanced Programming assignment.</p>
