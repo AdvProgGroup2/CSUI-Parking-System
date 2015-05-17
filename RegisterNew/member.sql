@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.1.12
+-- version 4.4.3
 -- http://www.phpmyadmin.net
 --
--- Host: 127.0.0.1
--- Generation Time: May 17, 2015 at 12:23 PM
--- Server version: 5.6.16
--- PHP Version: 5.5.11
+-- Host: localhost
+-- Generation Time: May 16, 2015 at 08:13 AM
+-- Server version: 5.6.24
+-- PHP Version: 5.6.8
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -31,9 +31,7 @@ CREATE TABLE IF NOT EXISTS `member` (
   `username` varchar(30) NOT NULL,
   `password` varchar(30) NOT NULL,
   `full_name` varchar(40) NOT NULL,
-  `role` varchar(255) NOT NULL,
-  PRIMARY KEY (`npm`),
-  UNIQUE KEY `username` (`username`)
+  `role` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -43,6 +41,17 @@ CREATE TABLE IF NOT EXISTS `member` (
 INSERT INTO `member` (`npm`, `username`, `password`, `full_name`, `role`) VALUES
 ('1306387941', 'tsabita.cyavrilla', 'tsabtsab', 'Tsabita Cyavrilla', 'Student'),
 ('1306439251', 'yohana.fransiska', 'yaya', 'Yohana Fransiska', 'Student');
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `member`
+--
+ALTER TABLE `member`
+  ADD PRIMARY KEY (`npm`),
+  ADD UNIQUE KEY `username` (`username`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
