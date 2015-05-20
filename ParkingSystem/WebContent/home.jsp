@@ -54,7 +54,7 @@
 		</div>
 		<div class = "col-xs-15">
 			<a class = "checkin" href = "#" onclick="toggle_visibility('checkinmenu')"><button class = "btn btn-default btn-circle btn-lg"><i class ="fa fa-map-marker fa-lg"></i></button></a>
-			<span id="checkintext">Check-in</span>
+			<span id="checkintext">Check-in/Check-out</span>
 		</div>
 		<div class = "col-xs-15">
 			<a class = "booking"><button class = "btn btn-default btn-circle btn-lg"><i class ="fa fa-car fa-lg"></i></button></a>

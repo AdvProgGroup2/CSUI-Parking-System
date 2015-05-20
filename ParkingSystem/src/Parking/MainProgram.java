@@ -1,10 +1,10 @@
 package Parking;
 
+
 import java.util.*;
 
-import Parking.User;
 import Parking.ConnectDB;
-import Parking.UserLogin;
+
 /**
  * 
  * @author yanuarwicaksana
@@ -63,7 +63,7 @@ public class MainProgram {
 					System.out.println("Please enter your password.");
 					String password = scan.nextLine();
 					
-				UserLogin userlogin = new UserLogin(username, password);
+				//UserLogin userlogin = new UserLogin(username, password);
 				boolean valid2 = databaseconnect.checklogin(username, password);
 		    	boolean checkinstat = false;
 		    	int parkid = 0;
@@ -115,7 +115,7 @@ public class MainProgram {
 				
 				if(!(full_name.equals("") || role.equals("") || npm.equals("") || username.equals("") ||
 						password.equals(""))){
-					User Users = new User(full_name, role, npm, username, password);
+					//User Users = new User(full_name, role, npm, username, password);
 					databaseconnect.insertData(npm, username, password, full_name, role);
 				} else{
 					System.out.println("Incorrect Input. Please try again!");
