@@ -11,6 +11,15 @@
 	<link href = "stylesheet.css" rel="stylesheet">
 	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 	<script src = "bootstrap.min.js"></script>
+	<script type="text/javascript">
+	    function toggle_visibility(id) {
+	       var e = document.getElementById(id);
+	       if(e.style.display == 'block')
+	          e.style.display = 'none';
+	       else
+	          e.style.display = 'block';
+	    }
+	</script>
 </head>
 
 <body>
@@ -37,8 +46,8 @@
 					<p>Password <input type = "password" name = "password" length="8"></p>
 					<button type="submit" value="Submit" class="btn btn-submit">Submit</button>
 				</form>
-<%-- 				<% boolean valid = dbconnect.checklogin(request.getParameter("username"), request.getParameter("password"));  --%>
-<%-- 					if(valid){ System.out.println("yes");}%> --%>
+			<br />
+			<button class = "btn btn-primary" onclick = "toggle_visibility('guestlogin')">Log in as guest</button>
 			</div>
 		</div>
 		
@@ -57,6 +66,18 @@
 			</div>
 		</div>
 	</div>
+	<br/><br/><br/>
+	
+	<div id = "guestlogin">	
+		<h2>Guest Log-in</h2>
+		<form name = "guestloginform" method = "post" action="GuestLogIn.jsp">
+			<p>Guest Name <input type = "text" name = "guestname"></p>
+			<p>Phone Number <input type = "password" name = "phonenumber"></p>
+			<button type="submit" value="Submit" class="btn btn-submit">Submit</button>
+		</form>
+	</div>
+	<br/><br/>
+	
 	<footer class = "below">
 		<p>Copyright 2015. A project by Group 2 for Advanced Programming assignment.</p>
 		<p>Created by Tsabita Vera Cyavrilla, Yanuar Wicaksana, Hakeem Radiansyah Daud, Abicantya Prasidya Sophie, Yohana Fransiska Kanisia Hadiati.</p>
