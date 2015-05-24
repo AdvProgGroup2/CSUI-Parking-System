@@ -29,6 +29,5 @@
 		session.setAttribute("loginstatus", "fail");
 		
 	%>
-<a>Test</a>
 </body>
 </html>

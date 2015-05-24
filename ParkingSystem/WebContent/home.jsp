@@ -57,7 +57,7 @@
 			<span id="checkintext">Check-in/Check-out</span>
 		</div>
 		<div class = "col-xs-15">
-			<a class = "booking"><button class = "btn btn-default btn-circle btn-lg"><i class ="fa fa-car fa-lg"></i></button></a>
+			<a class = "booking" href = "#" onclick="toggle_visibility('bookingmenu')"><button class = "btn btn-default btn-circle btn-lg"><i class ="fa fa-car fa-lg"></i></button></a>
 			<span id="booktext">Booking</span>
 		</div>
 		<div class = "col-xs-15">
@@ -100,10 +100,15 @@
 				response.sendRedirect("home.jsp");
 			}
 			%>
-			<form name="form1" method="post">
-				<button class = "btn btn-success" onclick="CheckIn()"><h3><i class = "fa fa-check"></i> CHECK IN</h3></button>
-				<input type ="hidden" name="check-in">
- 			</form>
+			<button class = "btn btn-success" onclick="toggle_visibility('specificspot')"><h3><i class = "fa fa-check"></i> CHECK IN</h3></button>
+ 			
+ 			<div id = "specificspot">
+	 			<form name = "form1" method = "post">
+	 				<h3>Spot: <input type = "text" id = "checkinspot"></h3>
+	 				<button class = "btn btn-success" onclick="CheckIn()"><h4><i class = "fa fa-check"></i> OK</h4></button>
+	 				<input type ="hidden" name="check-in">
+	 			</form>
+ 			</div>
  			
 			<% if(request.getParameter("check-out") != null){
 				if(session.getAttribute("checkstatus") == "yes"){
@@ -118,6 +123,18 @@
  			<form name = "form2" method = "post">
 				<button class = "btn btn-danger" onclick="CheckOut()"><h3><i class = "fa fa-remove"></i> CHECK OUT</h3></button>
 				<input type = "hidden" name = "check-out">
+			</form>
+		</div>
+		<br /><br />
+	</div>
+	
+	<br /><br />
+	<div id = "bookingmenu">
+		<div id = "bookspace">
+			<h2>Book your parking spot!</h2>
+			<form name = "bookparking" method = "post" action="CheckBooking.jsp">
+					<p>Take this spot <input type = "text" name = "spotnumber"></p>
+					<button type="submit" class="btn btn-submit">Submit</a></button>
 			</form>
 		</div>
 	</div>

@@ -160,6 +160,16 @@ footer.below{
 	display: none;
 }
 
+#bookingmenu{
+	display: none;
+	text-align: center;
+}
+
+#specificspot{
+	display: none;
+	text-align: center;
+}
+
 .home:hover + #hometext{
 	display: block;
 }
