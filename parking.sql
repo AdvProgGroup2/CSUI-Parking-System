@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: May 24, 2015 at 01:01 PM
+-- Generation Time: May 24, 2015 at 01:05 PM
 -- Server version: 5.6.16
 -- PHP Version: 5.5.11
 
@@ -19,6 +19,8 @@ SET time_zone = "+00:00";
 --
 -- Database: `parking`
 --
+CREATE DATABASE IF NOT EXISTS `parking` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
+USE `parking`;
 
 -- --------------------------------------------------------
 
@@ -26,6 +28,7 @@ SET time_zone = "+00:00";
 -- Table structure for table `guest`
 --
 
+DROP TABLE IF EXISTS `guest`;
 CREATE TABLE IF NOT EXISTS `guest` (
   `guest` char(30) NOT NULL,
   `phone_number` bigint(15) NOT NULL,
@@ -45,6 +48,7 @@ INSERT INTO `guest` (`guest`, `phone_number`) VALUES
 -- Table structure for table `lot`
 --
 
+DROP TABLE IF EXISTS `lot`;
 CREATE TABLE IF NOT EXISTS `lot` (
   `id` int(2) NOT NULL,
   `status` tinyint(1) NOT NULL,
@@ -93,6 +97,7 @@ INSERT INTO `lot` (`id`, `status`) VALUES
 -- Table structure for table `member`
 --
 
+DROP TABLE IF EXISTS `member`;
 CREATE TABLE IF NOT EXISTS `member` (
   `npm` varchar(10) NOT NULL,
   `username` varchar(30) NOT NULL,
