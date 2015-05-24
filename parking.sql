@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: May 24, 2015 at 01:05 PM
+-- Generation Time: May 24, 2015 at 02:15 PM
 -- Server version: 5.6.16
 -- PHP Version: 5.5.11
 
@@ -104,7 +104,6 @@ CREATE TABLE IF NOT EXISTS `member` (
   `password` varchar(30) NOT NULL,
   `full_name` varchar(40) NOT NULL,
   `role` varchar(255) NOT NULL,
-  `email` varchar(30) NOT NULL,
   PRIMARY KEY (`npm`),
   UNIQUE KEY `username` (`username`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -113,11 +112,11 @@ CREATE TABLE IF NOT EXISTS `member` (
 -- Dumping data for table `member`
 --
 
-INSERT INTO `member` (`npm`, `username`, `password`, `full_name`, `role`, `email`) VALUES
-('1306387916', 'hakeem', '1234', 'Hakeem', 'Student', 'hakeem.radiansyah@ui.ac.id'),
-('1306387941', 'tsabita.cyavrilla', 'tsabtsab', 'Tsabita Cyavrilla', 'Student', 'tsabita.cyavrilla.ui.ac.id'),
-('1306439251', 'yohana.fransiska', 'yaya', 'Yohana Fransiska', 'Student', 'yohana.fransiska@ui.ac.id'),
-('4543918572', 'ed', 'pass', 'Eddarius', 'Staff', 'eddarius@cs.ui.ac.id');
+INSERT INTO `member` (`npm`, `username`, `password`, `full_name`, `role`) VALUES
+('1306387916', 'hakeem', '1234', 'Hakeem', 'Student'),
+('1306387941', 'tsabita.cyavrilla', 'tsabtsab', 'Tsabita Cyavrilla', 'Student'),
+('1306439251', 'yohana.fransiska', 'yaya', 'Yohana Fransiska', 'Student'),
+('4543918572', 'ed', 'pass', 'Eddarius', 'Staff');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
