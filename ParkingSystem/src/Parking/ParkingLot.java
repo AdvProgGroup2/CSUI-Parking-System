@@ -12,6 +12,7 @@ import java.util.*;
  */
 public class ParkingLot {
 	private int available = 0;
+	private int availableguest = 0;
 	List parkinglist;
 	List idlist;
 	
@@ -41,6 +42,7 @@ public class ParkingLot {
 			parkinglist.add(space);
 			idlist.add(space.getId());
 			if(space.getAvailability()) available += 1;
+			if(space.getAvailability() && space.getId()>20) availableguest += 1;
 			
 		} else{
 			System.out.println("The id must be unique");
@@ -55,11 +57,18 @@ public class ParkingLot {
 			if(space.getAvailability()){
 				available += 1;
 			}
+			if(space.getAvailability() && space.getId()>20){
+				availableguest += 1;
+			}
 		}
 	}
 	
 	public int getavailablespace(){
 		return available;
+	}
+	
+	public int getavailableguestspace(){
+		return availableguest;
 	}
 	
 	public void checkin(ParkingSpace space){
