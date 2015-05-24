@@ -61,7 +61,7 @@
 			<span id="booktext">Booking</span>
 		</div>
 		<div class = "col-xs-15">
-			<a class = "directions"><button class = "btn btn-default btn-circle btn-lg"><i class ="fa fa-location-arrow fa-lg"></i></button></a>
+			<a class = "directions" href = "#" onclick = "toggle_visibility('map')"><button class = "btn btn-default btn-circle btn-lg"><i class ="fa fa-location-arrow fa-lg"></i></button></a>
 			<span id="directtext">Show Directions</span>
 		</div>
 		<div class = "col-xs-15">
@@ -139,9 +139,48 @@
 		</div>
 	</div>
 	
-	<div id = "map">
-		<br />
-<!-- 		<iframe src="https://www.google.com/maps/d/u/0/embed?mid=zhv4Hz3WXoN4.kfDnfZAiSom8" width="640" height="480"></iframe> -->
+	<div class = "text-center" id = "map">
+		<h2>Parking Map</h2><br/>
+		<div id = "tables">
+		<table id = "mapmenu">
+			<tr class = "text-center" id = "row1">
+				<td id = "space1">Space1</td>
+				<td id = "space2">Space2</td>
+				<td id = "space3">Space3</td>
+				<td id = "space4">Space4</td>
+				<td id = "space5">Space5</td>
+				<td id = "space6">Space6</td>
+				<td id = "space7">Space7</td>
+				<td id = "space8">Space8</td>
+				<td id = "space9">Space9</td>
+				<td id = "space10">Space10</td>
+			</tr>
+			<tr class = "text-center" id = "row2">
+				<td id = "space11">Space11</td>
+				<td id = "space12">Space12</td>
+				<td id = "space13">Space13</td>
+				<td id = "space14">Space14</td>
+				<td id = "space15">Space15</td>
+				<td id = "space16">Space16</td>
+				<td id = "space17">Space17</td>
+				<td id = "space18">Space18</td>
+				<td id = "space19">Space19</td>
+				<td id = "space20">Space20</td>
+			</tr>
+			<tr class = "text-center" id = "row3">
+				<td id = "space21">Space21</td>
+				<td id = "space22">Space22</td>
+				<td id = "space23">Space23</td>
+				<td id = "space24">Space24</td>
+				<td id = "space25">Space25</td>
+				<td id = "space26">Space26</td>
+				<td id = "space27">Space27</td>
+				<td id = "space28">Space28</td>
+				<td id = "space29">Space29</td>
+				<td id = "space30">Space30</td>
+			</tr>
+		</table>
+		</div>
 	</div>
 	
 	<br /><br />

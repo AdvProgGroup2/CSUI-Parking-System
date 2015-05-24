@@ -170,6 +170,33 @@ footer.below{
 	text-align: center;
 }
 
+#map{
+	display: none;
+	text-align: center;
+}
+
+#mapmenu{
+	text-align: center;
+	border-style: solid;
+	border-color: #1BBC9B;
+	background-color: #1BBC9B;
+	border-width: 10;
+}
+
+table{
+	text-align:center;
+}
+
+
+td{
+	text-align: center;
+	border-style: solid;
+	border-color: #DADFE1;
+	background-color: #DADFE1;
+	width: 50px;
+	height: 100px;
+}
+
 .home:hover + #hometext{
 	display: block;
 }
