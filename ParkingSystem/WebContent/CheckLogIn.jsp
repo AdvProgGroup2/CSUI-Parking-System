@@ -15,16 +15,19 @@
 		//System.out.println(dbconnect);
 		boolean valid = dbconnect.checklogin(request.getParameter("username"), request.getParameter("password")); 
 		if(valid){ 
-			response.sendRedirect("home.jsp");
 			session.setAttribute("loginstatus", "yes");
 			session.setAttribute("username", request.getParameter("username"));
+			/*
 			ParkingLot lot = new ParkingLot();
 			MainProgram.InitParkingSpace(lot);
 			session.setAttribute("parklot", lot);
 			session.setAttribute("statuslot", "yes");
+			*/
+			response.sendRedirect("home.jsp");
 			} else if(!valid) {
-			response.sendRedirect("index.jsp");
 			session.setAttribute("loginstatus", "fail");
+			response.sendRedirect("index.jsp");
 			}%>
+	
 </body>
 </html>

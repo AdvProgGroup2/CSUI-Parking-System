@@ -87,9 +87,12 @@ public class ConnectDB {
 	    
 	    public boolean checklogin(String username, String password){
 	    	try {
-		    	String checkSql = "select count(*) from member where username = '"+username+"' and password = '"+password+"'";
+		    	String checkSql = "select * from member where username = '"+username+"' and password = '"+password+"'";
 		    	rs = st.executeQuery(checkSql);
+		    	
 		    	rs.next();
+		    	System.out.println(rs.getString("username"));
+		    	//System.out.println(rs.getString(1));
 		    	if ( rs.getInt(1) == 0) {
 		    	  System.out.println("Username or Password incorrect. Please try again.");
 		    	  return false;
@@ -102,5 +105,75 @@ public class ConnectDB {
 		    	return false;
 		    }   
 		}
+	    
+	    public int checkstatus(int id){
+	    	try{
+	    		String sql = "select * from lot where id = '"+id+"'";
+	    		rs = st.executeQuery(sql);
+	    		rs.next();
+	    		
+	    		return rs.getInt("status");
+	    		
+	    	} catch(Exception ex){
+	    		System.out.println(ex);
+	    		return -1;
+	    	}
+	    }
+	    
+	    public void updatelot(int id, int status, String username){
+	    	try{
+	    		String sql = "update lot set status = '"+status+"', user = '"+username+"' where id = '"+id+"'";
+	    		st.executeUpdate(sql);
+	    		System.out.println("DB updated!");
+	    	} catch(Exception ex){
+	    		System.out.println(ex);
+	    	}
+	    }
+	    
+	    public String checkusername(int id){
+	    	try{
+	    		String sql = "select * from lot where id = '"+id+"'";
+	    		rs = st.executeQuery(sql);
+	    		rs.next();
+	    		
+	    		return rs.getString("username");
+	    		
+	    	} catch(Exception ex){
+	    		System.out.println(ex);
+	    		return null;
+	    	}
+	    }
+	    
+	    public boolean hasusername(String username){
+	    	try{
+	    		String sql = "select count(*) from lot where user = '"+username+"'";
+	    		rs = st.executeQuery(sql);
+	    		rs.next();
+	    		
+	    		//System.out.println(rs.getInt(1));
+	    		if(rs.getInt(1) == 1){
+	    			return true;
+	    		} else{
+	    			return false;
+	    		}
+	    	} catch(Exception ex){
+	    		System.out.println(ex);
+	    		return false;
+	    	}
+	    }
+	    
+	    public int getid(String username){
+	    	try{
+	    		String sql = "select * from lot where user = '"+username+"'";
+	    		rs = st.executeQuery(sql);
+	    		rs.next();
+	    		int id = rs.getInt("id");
+	    		return id;
+	    		
+	    	} catch(Exception ex){
+	    		System.out.println(ex);
+	    		return -1;
+	    	}
+	    }
 }
 
