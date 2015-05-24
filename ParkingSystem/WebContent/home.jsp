@@ -97,6 +97,7 @@
 				String ids = Integer.toString(id);
 				session.setAttribute("checkstatus", "yes");
 				session.setAttribute("checklot", ids);
+				response.sendRedirect("home.jsp");
 			}
 			%>
 			<form name="form1" method="post">
@@ -110,6 +111,7 @@
 					lot.checkout(new ParkingSpace(idout));
 					session.setAttribute("checkstatus", null);
 					session.setAttribute("checklot", null);
+					response.sendRedirect("home.jsp");
 				}
 			}
 			%>
@@ -136,6 +138,9 @@
 		function CheckOut(){
 			document.form2.checkout.value = "check out"
 			form2.submit()
+		}
+		function getdirection(){
+			
 		}
 	</script>
 	<footer id = "below" class="col-md-12">
