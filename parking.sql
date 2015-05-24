@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: May 24, 2015 at 04:16 PM
+-- Generation Time: May 25, 2015 at 01:41 AM
 -- Server version: 5.6.16
 -- PHP Version: 5.5.11
 
@@ -53,8 +53,9 @@ DROP TABLE IF EXISTS `lot`;
 CREATE TABLE IF NOT EXISTS `lot` (
   `id` int(2) NOT NULL,
   `status` tinyint(1) NOT NULL,
-  `user` char(30) NOT NULL,
-  UNIQUE KEY `id` (`id`)
+  `user` char(30) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `user` (`user`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -62,36 +63,36 @@ CREATE TABLE IF NOT EXISTS `lot` (
 --
 
 INSERT INTO `lot` (`id`, `status`, `user`) VALUES
-(1, 0, ''),
-(2, 0, ''),
-(3, 0, ''),
-(4, 0, ''),
-(5, 0, ''),
-(6, 0, ''),
-(7, 0, ''),
-(8, 0, ''),
-(9, 0, ''),
-(10, 0, ''),
-(11, 0, ''),
-(12, 0, ''),
-(13, 0, ''),
-(14, 0, ''),
-(15, 0, ''),
-(16, 0, ''),
-(17, 0, ''),
-(18, 0, ''),
-(19, 0, ''),
-(20, 0, ''),
-(21, 0, ''),
-(22, 0, ''),
-(23, 0, ''),
-(24, 0, ''),
-(25, 0, ''),
-(26, 0, ''),
-(27, 0, ''),
-(28, 0, ''),
-(29, 0, ''),
-(30, 0, '');
+(1, 0, NULL),
+(2, 0, NULL),
+(3, 0, NULL),
+(4, 0, NULL),
+(5, 0, NULL),
+(6, 0, NULL),
+(7, 0, NULL),
+(8, 0, NULL),
+(9, 0, NULL),
+(10, 0, NULL),
+(11, 0, NULL),
+(12, 0, NULL),
+(13, 0, NULL),
+(14, 0, NULL),
+(15, 0, NULL),
+(16, 0, NULL),
+(17, 0, NULL),
+(18, 0, NULL),
+(19, 0, NULL),
+(20, 0, NULL),
+(21, 0, NULL),
+(22, 0, NULL),
+(23, 0, NULL),
+(24, 0, NULL),
+(25, 0, NULL),
+(26, 0, NULL),
+(27, 0, NULL),
+(28, 0, NULL),
+(29, 0, NULL),
+(30, 0, NULL);
 
 -- --------------------------------------------------------
 
