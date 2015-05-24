@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: May 24, 2015 at 02:15 PM
+-- Generation Time: May 24, 2015 at 04:16 PM
 -- Server version: 5.6.16
 -- PHP Version: 5.5.11
 
@@ -40,6 +40,7 @@ CREATE TABLE IF NOT EXISTS `guest` (
 --
 
 INSERT INTO `guest` (`guest`, `phone_number`) VALUES
+('Daud', 812764818),
 ('Naning', 81257386012);
 
 -- --------------------------------------------------------
@@ -52,6 +53,7 @@ DROP TABLE IF EXISTS `lot`;
 CREATE TABLE IF NOT EXISTS `lot` (
   `id` int(2) NOT NULL,
   `status` tinyint(1) NOT NULL,
+  `user` char(30) NOT NULL,
   UNIQUE KEY `id` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -59,37 +61,37 @@ CREATE TABLE IF NOT EXISTS `lot` (
 -- Dumping data for table `lot`
 --
 
-INSERT INTO `lot` (`id`, `status`) VALUES
-(1, 0),
-(2, 0),
-(3, 0),
-(4, 0),
-(5, 0),
-(6, 0),
-(7, 0),
-(8, 0),
-(9, 0),
-(10, 0),
-(11, 0),
-(12, 0),
-(13, 0),
-(14, 0),
-(15, 0),
-(16, 0),
-(17, 0),
-(18, 0),
-(19, 0),
-(20, 0),
-(21, 0),
-(22, 0),
-(23, 0),
-(24, 0),
-(25, 0),
-(26, 0),
-(27, 0),
-(28, 0),
-(29, 0),
-(30, 0);
+INSERT INTO `lot` (`id`, `status`, `user`) VALUES
+(1, 0, ''),
+(2, 0, ''),
+(3, 0, ''),
+(4, 0, ''),
+(5, 0, ''),
+(6, 0, ''),
+(7, 0, ''),
+(8, 0, ''),
+(9, 0, ''),
+(10, 0, ''),
+(11, 0, ''),
+(12, 0, ''),
+(13, 0, ''),
+(14, 0, ''),
+(15, 0, ''),
+(16, 0, ''),
+(17, 0, ''),
+(18, 0, ''),
+(19, 0, ''),
+(20, 0, ''),
+(21, 0, ''),
+(22, 0, ''),
+(23, 0, ''),
+(24, 0, ''),
+(25, 0, ''),
+(26, 0, ''),
+(27, 0, ''),
+(28, 0, ''),
+(29, 0, ''),
+(30, 0, '');
 
 -- --------------------------------------------------------
 
