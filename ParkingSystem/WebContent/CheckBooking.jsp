@@ -12,7 +12,7 @@
 <%@ page import="Parking.ParkingLot" %>
 <%@ page import="Parking.MainProgram" %>
 
-<% ConnectDB db = new ConnectDB();
+<% 	ConnectDB db = new ConnectDB();
 	String bookingnumber = request.getParameter("spotnumber");
 		if(!(bookingnumber.equals(""))) {
 			int booking = Integer.parseInt(bookingnumber);
@@ -29,7 +29,7 @@
 			} else {
 			System.out.println("You must not leave this empty! Please enter your desired spot.");
 			}
-			
+		response.sendRedirect("home.jsp");	
 /* 			if (stat==0){
 				System.out.println("Congratulations! You have successfully booked the parking spot!");
 					if (stat==1){

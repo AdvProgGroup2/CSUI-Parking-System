@@ -134,7 +134,7 @@
 				if(db.hasusername(username)){
 					int idout = db.getid(username);
 					if(db.checkstatus(idout) == 1){
-						db.updatelot(idout, 0, "");
+						db.updatelot(idout, 0, null);
 						lot.checkout(new ParkingSpace(idout));
 						//session.setAttribute("checkstatus", null);
 						//session.setAttribute("checklot", null);
@@ -223,6 +223,10 @@
 		}
 		function getdirection(){
 			
+		}
+		function changecolor(){
+			var y = document.getElementbyId("space1");
+			y.style.color = "red";
 		}
 	</script>
 	<footer id = "below" class="col-md-12">

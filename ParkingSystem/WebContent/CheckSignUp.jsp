@@ -19,14 +19,18 @@
 				password.equals(""))){
 			boolean bool = dbconnect.insertData(npm, username, password, full_name, role);
 			if(bool){
-				response.sendRedirect("home.jsp");
 				session.setAttribute("loginstatus", "yes");
 				session.setAttribute("username", username);
+				response.sendRedirect("home.jsp");
+			} else{
+				session.setAttribute("loginstatus", "fail");	
+				response.sendRedirect("index.jsp");
 			}
+		} else{
+			System.out.println("Incorrect Input. Please try again!");
+			response.sendRedirect("index.jsp");
 		}
-		System.out.println("Incorrect Input. Please try again!");
-		response.sendRedirect("index.jsp");
-		session.setAttribute("loginstatus", "fail");
+		
 		
 	%>
 <a>Test</a>
