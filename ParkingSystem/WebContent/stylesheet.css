@@ -217,6 +217,19 @@ td{
 	display: block;
 }
 
+.parkspot:hover + #parkspottext{
+	display: block;
+}
+.guestregist:hover + #guestregisttext{
+	display: block;
+}
+.viewguest:hover + #viewguesttext{
+	display: block;
+}
+.viewmember:hover + #viewmembertext{
+	display: block;
+}
+
 @font-face {
     font-family: "Gotham-Book";
     src: url("Gotham-Book.otf");
