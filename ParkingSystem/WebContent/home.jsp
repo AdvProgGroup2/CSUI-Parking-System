@@ -19,6 +19,10 @@
 	       else
 	          e.style.display = 'block';
 	    }
+	    function changecolor(id){
+			var y = document.getElementById(id);
+			y.style.backgroundColor = "red";
+		}
 	</script>
 </head>
 
@@ -36,6 +40,7 @@
 	<%
 		ConnectDB db = new ConnectDB();
 		ParkingLot lot = new ParkingLot();
+		LinkedList param = new LinkedList();
 		//MainProgram.InitParkingSpace(lot);
 		String username = (String) session.getAttribute("username");
 		for (int i = 0; i < 30; i++){
@@ -44,12 +49,16 @@
 			//System.out.println(status);
 			if(status == 1){
 				space.setAvailability(false);
+				param.add("space" + (i+1));
 				//System.out.println("test");
 			}
 			lot.addParkingSpace(space);
 		}
 		lot.checkavailable();
-	
+		int length = param.size();
+		ParkingMap map = new ParkingMap(lot);
+		map.InitiateMap();
+		System.out.println(map.getdirection());
 	%>
 	<div id = "top">
 		<img src = "carlogo.png" alt = "csuiparkingsystemlogo">
@@ -165,9 +174,9 @@
 		</div>
 	</div>
 	
-	<div class = "text-center" id = "map">
+	<div class = "text-center" id = "map" style="text-align:center;">
 		<h2>Parking Map</h2><br/>
-		<div id = "tables">
+		<div id = "tables" class = "text-center">
 		<table id = "mapmenu">
 			<tr class = "text-center" id = "row1">
 				<td id = "space1">Space1</td>
@@ -207,9 +216,26 @@
 			</tr>
 		</table>
 		</div>
+		<br /><br />
+		<button id = "getdirbutton" class = btn btn-info btn-lg" onclick="getdirection()">Get Directions</button>
+		<br>
+		<h4 id="Direction1"></h4>
+		<h4 id="Direction2"></h4>
+		<h4 id="Direction3"></h4>
+		<h4 id="Direction4"></h4>
+		
 	</div>
 	
 	<br /><br />
+	
+<!-- 	<div id = "getdirections" style="display:none;"> -->
+<!-- 			<form name = "directionsform" method = "post"> -->
+<!-- 				<h3>Where do you wanna go? Slot: <input type = "text" name = "directionspot"></h3> -->
+<!-- 				<button class = "btn btn-success" onclick = "getdirection()"><h4><i class = "fa fa-check"></i> Go!</h4></button> -->
+<!-- 				<h6 id="Direction1"></h6> -->
+<!-- 				<h6 id="Direction2"></h6> -->
+<!-- 			</form> -->
+<!-- 	</div> -->
 	
 	<script type="text/javascript">
 		function CheckIn(){
@@ -222,12 +248,30 @@
 			form2.submit()
 		}
 		function getdirection(){
+			<%
+				String direct = map.getdirection();
+				String[] list = direct.split(" ");
+				String row = list[0];
+				String col = list[1];
+				int spot = Integer.parseInt(row) * Integer.parseInt(col);
+				
+			%>
+			
+			document.getElementById("Direction1").innerHTML = "The Nearest Spot are Space" +<%=spot%> + "<br>";
+			document.getElementById("Direction2").innerHTML = "Direction To The Nearest Spot: <br>";
+			document.getElementById("Direction3").innerHTML = "Take the turn no. "+<%=row%>+" to the left <br>";
+			document.getElementById("Direction4").innerHTML = "Straight ahead, the available space are the space no. " +<%=col%>+" <br>";
 			
 		}
-		function changecolor(){
-			var y = document.getElementbyId("space1");
-			y.style.color = "red";
-		}
+
+		<% 
+			for (int i = 0; i<length; i++){
+				String space = (String) param.get(i);
+		%>		
+		changecolor('<%=space%>');
+		<%		}%>
+
+		
 	</script>
 	<footer id = "below" class="col-md-12">
 		<p>Copyright 2015. A project by Group 2 for Advanced Programming assignment.</p>
