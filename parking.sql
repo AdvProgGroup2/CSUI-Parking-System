@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: May 25, 2015 at 01:41 AM
+-- Generation Time: May 26, 2015 at 07:53 AM
 -- Server version: 5.6.16
 -- PHP Version: 5.5.11
 
@@ -55,7 +55,7 @@ CREATE TABLE IF NOT EXISTS `lot` (
   `status` tinyint(1) NOT NULL,
   `user` char(30) DEFAULT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `user` (`user`)
+  KEY `user` (`user`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
