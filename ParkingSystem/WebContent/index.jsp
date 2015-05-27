@@ -75,7 +75,7 @@
 		<h2>Guest Log-in</h2>
 		<form name = "guestloginform" method = "post" action="GuestLogIn.jsp">
 			<p>Guest Name <input type = "text" name = "guestname"></p>
-			<p>Phone Number <input type = "password" name = "phonenumber"></p>
+			<p>Phone Number <input type = "text" name = "phonenumber"></p>
 			<button type="submit" value="Submit" class="btn btn-submit">Submit</button>
 		</form>
 	</div>

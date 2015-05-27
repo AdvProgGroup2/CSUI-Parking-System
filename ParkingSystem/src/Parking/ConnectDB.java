@@ -149,8 +149,6 @@ public class ConnectDB {
 	    		String sql = "select count(*) from lot where user = '"+username+"'";
 	    		rs = st.executeQuery(sql);
 	    		rs.next();
-	    		
-	    		//System.out.println(rs.getInt(1));
 	    		if(rs.getInt(1) == 1){
 	    			return true;
 	    		} else{
@@ -161,6 +159,22 @@ public class ConnectDB {
 	    		return false;
 	    	}
 	    }
+	    
+	    public boolean checkGuest(String guest) {
+		    try {
+		    	String checkSql = "Select count(*) from guest where guest = '"+guest+"'";
+		    	rs = st.executeQuery(checkSql);
+		    	rs.next();
+		    	if(rs.getInt(1) == 1){
+	    			return true;
+	    		} else{
+	    			return false;
+	    		}
+	    	} catch(Exception ex){
+	    		System.out.println(ex);
+	    		return false;
+	    	}
+		}
 	    
 	    public int getid(String username){
 	    	try{

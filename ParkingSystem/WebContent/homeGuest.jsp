@@ -40,21 +40,23 @@
 	<%
 		ConnectDB db = new ConnectDB();
 		ParkingLot lot = new ParkingLot();
+		ParkingLot guestlot = new ParkingLot();
 		LinkedList param = new LinkedList();
-		//MainProgram.InitParkingSpace(lot);
 		String username = (String) session.getAttribute("username");
 		for (int i = 0; i < 30; i++){
 			ParkingSpace space = new ParkingSpace(i+1);
 			int status = db.checkstatus(i+1);
-			//System.out.println(status);
 			if(status == 1){
 				space.setAvailability(false);
 				param.add("space" + (i+1));
-				//System.out.println("test");
 			}
 			lot.addParkingSpace(space);
+			if (space.getId() > 20){
+				guestlot.addParkingSpace(space);
+			}
 		}
 		lot.checkavailable();
+		guestlot.checkavailable();
 		int length = param.size();
 		ParkingMap map = new ParkingMap(lot);
 		map.InitiateMap();
@@ -67,23 +69,19 @@
 	
 	<div id = "nav">
 		
-		<div class = "col-xs-15">
+		<div class = "col-xs-3">
 			<a href ="home.jsp" class = "home"><button class = "btn btn-default btn-circle btn-lg"><i class ="fa fa-home fa-lg"></i></button></a>
 			<span id="hometext">Home</span>
 		</div>
-		<div class = "col-xs-15">
+		<div class = "col-xs-3">
 			<a class = "checkin" href = "#" onclick="toggle_visibility('checkinmenu')"><button class = "btn btn-default btn-circle btn-lg"><i class ="fa fa-map-marker fa-lg"></i></button></a>
 			<span id="checkintext">Check-in/Check-out</span>
 		</div>
-		<div class = "col-xs-15">
-			<a class = "booking" href = "#" onclick="toggle_visibility('bookingmenu')"><button class = "btn btn-default btn-circle btn-lg"><i class ="fa fa-car fa-lg"></i></button></a>
-			<span id="booktext">Booking</span>
-		</div>
-		<div class = "col-xs-15">
+		<div class = "col-xs-3">
 			<a class = "directions" href = "#" onclick = "toggle_visibility('map')"><button class = "btn btn-default btn-circle btn-lg"><i class ="fa fa-location-arrow fa-lg"></i></button></a>
 			<span id="directtext">Show Directions</span>
 		</div>
-		<div class = "col-xs-15">
+		<div class = "col-xs-3">
 			<form name="logout" method="post" action="Logout.jsp">
 			<a class = "signout" href ="index.jsp"><button class = "btn btn-default btn-circle btn-lg" type="submit" value="Submit"><i class ="fa fa-arrow-circle-left fa-lg"></i></button></a>
 			<span id="signouttext">Log Out</span>
@@ -100,7 +98,7 @@
 		</div>
 		<div class = "col-md-6 col-sm-height" id = "spots">
 			<h2>Available Parking Spot</h2>
-			<h1 id = "avanumber"><%=lot.getavailablespace() %></h1>
+			<h1 id = "avanumber"><%=guestlot.getavailablespace() %></h1>
 			<h4>Spots Available</h4>
 		</div>
 	</div>
@@ -117,13 +115,13 @@
  			<% if(request.getParameter("check-in") != null){
  				int id = Integer.parseInt(request.getParameter("checkinspot"));
  				if(!(db.hasusername(username))){
-					if(db.checkstatus(id) == 0){
+					if(db.checkstatus(id) == 0 && id>20){
 						lot.checkin(new ParkingSpace(id));
-						db.updatelot(id, 1, username);						
+						db.updatelot(id, 1, username);
 					} else{
 						System.out.println("Spot already taken!");
 					}
-				response.sendRedirect("home.jsp");
+				response.sendRedirect("homeGuest.jsp");
  				}
 			}
 			%>
@@ -135,18 +133,15 @@
  			</div>
  			
 			<% if(request.getParameter("check-out") != null){
-				if(db.hasusername(username)){
+				if(db.checkGuest(username)){
 					int idout = db.getid(username);
 					if(db.checkstatus(idout) == 1){
 						db.updatelot(idout, 0, null);
-						lot.checkout(new ParkingSpace(idout));
-						//session.setAttribute("checkstatus", null);
-						//session.setAttribute("checklot", null);
-						
+						lot.checkout(new ParkingSpace(idout));				
 					} else{
 						System.out.println("Check out not available!");
 					}
-					response.sendRedirect("home.jsp");
+					response.sendRedirect("homeGuest.jsp");
 				}
 			}
 			%>
@@ -156,17 +151,6 @@
 			</form>
 		</div>
 		<br /><br />
-	</div>
-	
-	<br /><br />
-	<div id = "bookingmenu">
-		<div id = "bookspace">
-			<h2>Book your parking spot!</h2>
-			<form name = "bookparking" method = "post" action="CheckBooking.jsp">
-					<p>Take this spot <input type = "text" name = "spotnumber"></p>
-					<button type="submit" class="btn btn-submit">Submit</a></button>
-			</form>
-		</div>
 	</div>
 	
 	<div class = "text-center" id = "map" style="text-align:center;">

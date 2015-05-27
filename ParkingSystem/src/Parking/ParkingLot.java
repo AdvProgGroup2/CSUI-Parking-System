@@ -21,17 +21,6 @@ public class ParkingLot {
 		this.available = available;
 		this.idlist = new LinkedList();
 	}
-	/*
-	public ParkingLot(List<ParkingSpace> parklist){
-		this.parkinglist = parklist;
-		this.available = available;
-		this.idlist = new LinkedList();
-		for (int i = 0; i < parkinglist.size(); i++){
-			ParkingSpace space = (ParkingSpace) parkinglist.get(i);
-			addParkingSpace(space);
-		}
-	}
-	*/
 	
 	public List getparkinglist(){
 		return parkinglist;

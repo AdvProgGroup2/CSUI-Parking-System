@@ -7,10 +7,10 @@ import java.util.*;
  * @author yanuarwicaksana
  *
  * Comments: This class represents a simple map object that will be displayed in the program.
- * The map is represented as a square with row and collumns (assumes that there are 30 parking space with
- * each row has exactly 10 parking space). The map is stored inside a 2D array collection with row and collumn
+ * The map is represented as a square with row and columns (assumes that there are 30 parking space with
+ * each row has exactly 10 parking space). The map is stored inside a 2D array collection with row and column
  * serves as index for the array. This class also provided the direction method that return the nearest available
- * parking space. 
+ * parking space.
  */
 
 public class ParkingMap {
@@ -37,8 +37,7 @@ public class ParkingMap {
 				temp.add(park);
 			}
 			map.add(temp);
-		}
-		
+		}		
 	}
 	
 	public String getdirection(){
@@ -57,5 +56,4 @@ public class ParkingMap {
 		}
 		return row + " " +  col;
 	}
-
 }
