@@ -33,7 +33,7 @@ Steps:
 	a. In your browser, go to ‘localhost/phpmyadmin’
 	b. Select ‘New’ and create a new database called ‘parking’
 	c. Select the ‘Import’ tab and Click the ‘Choose File’ button
-	d. Locate the ‘member.sql’ file
+	d. Locate the ‘parking.sql’ file
 	e. Click ‘Go’.
 4. Install Oracle WebLogic Server Tools for Luna on your Eclipse from Eclipse Marketplace. Eclipse will restart.
 5. Switch to Java EE perspective on your Eclipse. Make sure that you link the JDK 8 to the Eclipse.
@@ -48,7 +48,7 @@ package of ‘Parking’ in the src folder before importing.
 	c. Go to ‘Project Facets’ and click the ‘Runtimes’ tab
 	d. Tick the ‘Apache Tomcat v8.0’. If there are no such thing, click new, select the ‘Apache Tomcat v8.0’ and click finish.
 	e. Press OK.
-10. Move the ‘blabla.jar’ into the ‘WEB-INF’ directory.
+10. Move the .jar file into the ‘WEB-INF’ directory. (This step is just to make sure that the database can be executed in the program).
 11. Configure the JAR file on the Dynamic Web Project.
 	a. ‘Java Resources’ -> Libraries -> Right-click on JRE System Library
 	b. Choose ‘Build Path’
