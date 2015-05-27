@@ -123,11 +123,11 @@
 	<br/><br/>
 	
 	<div id = "parkspotmenu">
-	<div class = "text-center" id = "map">
+	<div id = "map">
 		<h2>Parking Map</h2><br/>
 		<div id = "tables">
 		<table id = "mapmenu">
-			<tr class = "text-center" id = "row1">
+			<tr id = "row1">
 				<td id = "space1">Space1</td>
 				<td id = "space2">Space2</td>
 				<td id = "space3">Space3</td>
@@ -139,7 +139,7 @@
 				<td id = "space9">Space9</td>
 				<td id = "space10">Space10</td>
 			</tr>
-			<tr class = "text-center" id = "row2">
+			<tr id = "row2">
 				<td id = "space11">Space11</td>
 				<td id = "space12">Space12</td>
 				<td id = "space13">Space13</td>
@@ -151,7 +151,7 @@
 				<td id = "space19">Space19</td>
 				<td id = "space20">Space20</td>
 			</tr>
-			<tr class = "text-center" id = "row3">
+			<tr id = "row3">
 				<td id = "space21">Space21</td>
 				<td id = "space22">Space22</td>
 				<td id = "space23">Space23</td>
