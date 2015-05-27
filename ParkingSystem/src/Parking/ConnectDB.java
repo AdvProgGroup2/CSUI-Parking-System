@@ -231,5 +231,22 @@ public class ConnectDB {
 		    	return false;
 		    }
 	    }
+	    
+	    public boolean checkbook(String username){
+	    	try{
+	    		String sql = "select * from lot where status = 2";
+	    		rs = st.executeQuery(sql);
+	    		while(rs.next()){
+	    			String user = rs.getString("user");
+	    			if(user.equals(username)){
+	    				return true;
+	    			}
+	    		}
+	    		return false;
+	    	} catch(Exception ex){
+	    		System.out.println(ex);
+	    		return false;
+	    	}
+	    }
 }
 

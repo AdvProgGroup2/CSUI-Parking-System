@@ -116,23 +116,33 @@
 			<button class = "btn btn-success" onclick="toggle_visibility('specificspot')"><h3><i class = "fa fa-check"></i> CHECK IN</h3></button>
  			
  			<div id = "specificspot">
+ 			
  			<% if(request.getParameter("check-in") != null){
  				//System.out.println(request.getParameter("checkinspot"));
+ 				
  				int id = Integer.parseInt(request.getParameter("checkinspot"));
- 				if(!(db.hasusername(username))){
-					if(db.checkstatus(id) == 0){
-						lot.checkin(new ParkingSpace(id));
-						db.updatelot(id, 1, username);
-						//String ids = Integer.toString(id);
-						//session.setAttribute("checkstatus", "yes");
-						//session.setAttribute("checklot", ids);
-						
-					} else{
-						System.out.println("Spot already taken!");
+ 				System.out.println(db.checkbook(username));
+ 				if ((db.checkbook(username))){
+ 					if (id == db.getid(username)){
+ 						System.out.println("Congratulations, you have signed in to your destired spot!");
+ 						db.updatelot(id, 1, username);
+ 					} else{
+ 						System.out.println("You cannot check in here!");
+ 					}
+ 				} else{
+ 					if(!db.hasusername(username)){
+						if(db.checkstatus(id) == 0){
+							lot.checkin(new ParkingSpace(id));
+							db.updatelot(id, 1, username);
+						} else{
+							System.out.println("Spot already taken!");
+						}
 					}
-				response.sendRedirect("home.jsp");
- 				}
+				}
+				response.sendRedirect("home.jsp");	
 			}
+					
+
 			%>
 	 			<form name = "form1" method = "post">
 	 				<h3>Spot: <input type = "text" name = "checkinspot"></h3>
