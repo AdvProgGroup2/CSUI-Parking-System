@@ -12,31 +12,30 @@
 <%@ page import="Parking.ParkingLot" %>
 <%@ page import="Parking.MainProgram" %>
 
-<% 	ConnectDB db = new ConnectDB();
+<% ConnectDB db = new ConnectDB(); 
+
 	String bookingnumber = request.getParameter("spotnumber");
-		if(!(bookingnumber.equals(""))) {
-			int booking = Integer.parseInt(bookingnumber);
-			
-			int stat = db.checkstatus(booking);
-			
-			if (stat==0){
-				System.out.println("Congratulations, you have successfully booked your spot!");
-			} else if (stat==1){
-				System.out.println("Sorry, that spot is already taken. Please try another spot.");
-			} else {
-				System.out.println("Sorry that spot is already booked. Please try another spot.");
+	String username = (String) session.getAttribute("username");
+
+ 	if (!(bookingnumber.equals(""))){
+			boolean hasuser = db.hasusername(username);
+		if (hasuser == false){
+				int booking = Integer.parseInt(bookingnumber);
+				int stat = db.checkstatus(booking);
+			 	if (stat == 0){
+					System.out.println("You have successfully checked in!");
+					db.updatelot(booking, 2, username);
 				}
-			} else {
-			System.out.println("You must not leave this empty! Please enter your desired spot.");
-			}
-		response.sendRedirect("home.jsp");	
-/* 			if (stat==0){
-				System.out.println("Congratulations! You have successfully booked the parking spot!");
-					if (stat==1){
-						System.out.println("Sorry, that parking spot is already taken. Please try another one."); 
+				else{
+					System.out.println("Sorry that spot is taken!");
+				}
+		}
+		else{
+			System.out.println("Sorry you have already booked a place!");
+		}
+/* 				System.out.println("You cannot leave this empty."); */
 	}
-	}
-	} */
+	response.sendRedirect("home.jsp");
 	 %>
 </body>
 </html>
