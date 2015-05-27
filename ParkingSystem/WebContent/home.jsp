@@ -217,17 +217,18 @@
 		</table>
 		</div>
 		<br /><br />
-		<button id = "getdirbutton" class = btn btn-info btn-lg" onclick="getdirection()">Get Directions</button>
-		<br>
-		<h4 id="Direction1"></h4>
+		<button id = "getdirbutton" class = "btn btn-info btn-lg" onclick="getdirection()">Direction to the nearest space</button>
+		<br><br>
+		<h3 id="Direction1"></h3>
 		<h4 id="Direction2"></h4>
-		<h4 id="Direction3"></h4>
-		<h4 id="Direction4"></h4>
+		<h5 id="Direction3"></h5>
+		<h5 id="Direction4"></h5>
 		
 	</div>
 	
 	<br /><br />
 	
+<!-- 	***Second option to get direction*** -->
 <!-- 	<div id = "getdirections" style="display:none;"> -->
 <!-- 			<form name = "directionsform" method = "post"> -->
 <!-- 				<h3>Where do you wanna go? Slot: <input type = "text" name = "directionspot"></h3> -->
@@ -257,10 +258,10 @@
 				
 			%>
 			
-			document.getElementById("Direction1").innerHTML = "The Nearest Spot are Space" +<%=spot%> + "<br>";
-			document.getElementById("Direction2").innerHTML = "Direction To The Nearest Spot: <br>";
+			document.getElementById("Direction1").innerHTML = "The nearest spot is Space " +<%=spot%>;
+			document.getElementById("Direction2").innerHTML = "<br>HOW TO GET THERE? <br>";
 			document.getElementById("Direction3").innerHTML = "Take the turn no. "+<%=row%>+" to the left <br>";
-			document.getElementById("Direction4").innerHTML = "Straight ahead, the available space are the space no. " +<%=col%>+" <br>";
+			document.getElementById("Direction4").innerHTML = "Straight ahead, the available space is the space no. " +<%=col%>+" <br>";
 			
 		}
 

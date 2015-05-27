@@ -174,6 +174,14 @@ footer.below{
 	display: none;
 }
 
+#Direction1{
+	color: #6C7A89;
+}
+
+#Direction2{
+	color: #2574A9;
+}
+
 #guestlogin{
 	display: none;
 }
@@ -193,10 +201,8 @@ footer.below{
 
 table{
 	text-align:center;
-}
-
-tr{
-	text-align:center;
+	align: center;
+	margin: auto;
 }
 
 
@@ -238,8 +244,8 @@ td{
 	display: block;
 }
 
-
 @font-face {
     font-family: "Gotham-Book";
     src: url("Gotham-Book.otf");
 }
+
