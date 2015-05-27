@@ -13,21 +13,30 @@
 	<%@ page import="Parking.MainProgram" %>
 	<% ConnectDB dbconnect = new ConnectDB();
 		//System.out.println(dbconnect);
-		boolean valid = dbconnect.checklogin(request.getParameter("username"), request.getParameter("password")); 
+		String username = request.getParameter("username");
+		boolean valid = dbconnect.checklogin(username, request.getParameter("password")); 
 		if(valid){ 
-			session.setAttribute("loginstatus", "yes");
-			session.setAttribute("username", request.getParameter("username"));
-			/*
-			ParkingLot lot = new ParkingLot();
-			MainProgram.InitParkingSpace(lot);
-			session.setAttribute("parklot", lot);
-			session.setAttribute("statuslot", "yes");
-			*/
-			response.sendRedirect("home.jsp");
-			} else if(!valid) {
+			boolean role = dbconnect.isadmin(username);
+			session.setAttribute("username", username);
+			//System.out.println(role);
+			//session.setAttribute("loginstatus", "yes");
+			//response.sendRedirect("home.jsp");
+			//role.toLowerCase();
+			
+			if(role){
+				session.setAttribute("adminstatus", "yes");
+				response.sendRedirect("adminhome.jsp");
+				return;
+			} else{
+				session.setAttribute("loginstatus", "yes");
+				response.sendRedirect("home.jsp");
+				return;
+			}
+		} else if(!valid) {
 			session.setAttribute("loginstatus", "fail");
 			response.sendRedirect("index.jsp");
-			}%>
+			return;
+		}%>
 	
 </body>
 </html>

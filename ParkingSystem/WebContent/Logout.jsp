@@ -11,10 +11,14 @@
 	<%@ page import="Parking.ParkingLot" %>
 	<%@ page import="Parking.MainProgram" %>
 	<%
-		session.setAttribute("loginstatus", null);
+		if(session.getAttribute("loginstatus") == "yes"){
+			session.setAttribute("loginstatus", null);
+			
+		} else if(session.getAttribute("adminstatus") == "yes"){
+			session.setAttribute("adminstatus", null);
+		}
 		session.setAttribute("username", null);
 		response.sendRedirect("index.jsp");
-	
 	%>
 </body>
 </html>

@@ -35,7 +35,10 @@
 	</div>
 	<% if(session.getAttribute("loginstatus") == "yes"){
 			response.sendRedirect("home.jsp");
-	}%>
+	} else if(session.getAttribute("adminstatus") == "yes"){
+			response.sendRedirect("adminhome.jsp");
+	}
+	%>
 	<div id = "welcomemenu">
 		<div class = "col-md-6">
 			<div id = "login">

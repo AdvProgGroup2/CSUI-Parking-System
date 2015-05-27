@@ -19,9 +19,15 @@
 				password.equals(""))){
 			boolean bool = dbconnect.insertData(npm, username, password, full_name, role);
 			if(bool){
-				session.setAttribute("loginstatus", "yes");
 				session.setAttribute("username", username);
-				response.sendRedirect("home.jsp");
+				boolean isadmin = dbconnect.isadmin(username);
+				if(!isadmin){
+					session.setAttribute("loginstatus", "yes");
+					response.sendRedirect("home.jsp");
+				} else {
+					session.setAttribute("adminstatus", "yes");
+					response.sendRedirect("adminhome.jsp");
+				}
 			} else{
 				session.setAttribute("loginstatus", "fail");	
 				response.sendRedirect("index.jsp");

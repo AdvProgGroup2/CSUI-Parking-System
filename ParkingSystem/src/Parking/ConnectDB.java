@@ -2,6 +2,8 @@ package Parking;
 
 
 import java.sql.*;
+import java.util.LinkedList;
+import java.util.List;
 
 public class ConnectDB {
 	private Connection con;
@@ -21,28 +23,26 @@ public class ConnectDB {
 	}
 	
 	
-	public void getData() {
-		try {			
-			String query = "Select * from Member";
-			rs = st.executeQuery(query);
-			System.out.println("Records from Database\n");
-			while(rs.next()) {
-				String npm = rs.getString("npm");
-				String username = rs.getString("username");
-				String password = rs.getString("password");
-				String full_name = rs.getString("full_name");
-				String role = rs.getString("role");
-				System.out.println("NPM      : "+npm      +" \n"+
-								   "Username : "+username +" \n"+
-								   "Password : "+password +" \n"+
-								   "Full Name: "+full_name+" \n" +
-								   "Role	 : " + role + "\n");
-			}
-			
-		} catch(Exception ex) {
-			System.out.println(ex);
-		}
-	}
+	public LinkedList getmember(){
+    	LinkedList list = new LinkedList();
+    	try{
+    		String sql = "select * from member";
+    		rs = st.executeQuery(sql);
+    		//rs.next();
+    		
+    		while(rs.next()){
+    			String name = rs.getString("full_name");
+    			String npm = rs.getString("npm");
+    			String username = rs.getString("username");
+    			list.add(name + "," + npm + "," + username);
+    		}
+    		return list;
+    	} catch(Exception ex){
+    		System.out.println(ex);
+    		return null;
+    	}
+    	
+    }
 	
 	
 	public boolean insertData(String npm, String username, String password, String full_name, String role) {
@@ -174,6 +174,62 @@ public class ConnectDB {
 	    		System.out.println(ex);
 	    		return -1;
 	    	}
+	    }
+	    
+	    public boolean isadmin(String username){
+	    	try{
+	    		String sql = "select * from member where username = '"+username+"'";
+	    		rs = st.executeQuery(sql);
+	    		rs.next();
+	    		String role = rs.getString("role");
+	    		if(role.equalsIgnoreCase("admin")) return true;
+	    		else return false;
+	    	} catch(Exception ex){
+	    		System.out.println(ex);
+	    		return false;
+	    	}
+	    }
+	    
+	    public LinkedList getguest(){
+	    	LinkedList list = new LinkedList();
+	    	try{
+	    		String sql = "select * from guest";
+	    		rs = st.executeQuery(sql);
+	    		//rs.next();
+	    		
+	    		while(rs.next()){
+	    			String guest = rs.getString("guest");
+	    			String phone = "0" + rs.getString("phone_number");
+	    			list.add(guest + "," + phone);
+	    		}
+	    		return list;
+	    	} catch(Exception ex){
+	    		System.out.println(ex);
+	    		return null;
+	    	}
+	    	
+	    }
+	    
+	    public boolean insertguest(String guest, String phone){
+	    	try {
+		    	String checkSql = "Select count(*) from guest where guest = '"+guest+"'";
+		    	rs = st.executeQuery(checkSql);
+		    	rs.next();
+		    	if ( rs.getInt(1) == 0) {
+		    		String query = "Insert into guest(guest,phone_number) "+
+						       "values('"+guest+"','"+phone+"')";						
+		    		st.executeUpdate(query);
+		    		System.out.println(guest+" is inserted into the Database!");
+		    		System.out.println("Congratulations, you're now member of CSUI parking privileges, " + guest + "!\n");
+		    		return true;
+		    	} else {
+		    		System.out.println(guest+ " already exists! Please choose another one.");
+		    		return false;
+		    	}
+		    } catch(Exception ex) {
+		    	System.out.println(ex);
+		    	return false;
+		    }
 	    }
 }
 

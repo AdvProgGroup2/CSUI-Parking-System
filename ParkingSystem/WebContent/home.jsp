@@ -33,7 +33,9 @@
 	<%@ page import="Parking.ConnectDB" %>
 	<%@ page import="Parking.ParkingMap" %>
 	<% 
-		if(session.getAttribute("loginstatus") == null){
+		if(session.getAttribute("adminstatus") == "yes"){
+			response.sendRedirect("adminhome.jsp");
+		} else if(session.getAttribute("loginstatus") == null){
 			response.sendRedirect("index.jsp");
 		}
 	%>
@@ -58,7 +60,7 @@
 		int length = param.size();
 		ParkingMap map = new ParkingMap(lot);
 		map.InitiateMap();
-		System.out.println(map.getdirection());
+		//System.out.println(map.getdirection());
 	%>
 	<div id = "top">
 		<img src = "carlogo.png" alt = "csuiparkingsystemlogo">
@@ -174,7 +176,7 @@
 		</div>
 	</div>
 	
-	<div class = "text-center" id = "map" style="text-align:center;">
+	<div id = "map" style="text-align:center;">
 		<h2>Parking Map</h2><br/>
 		<div id = "tables" class = "text-center">
 		<table id = "mapmenu">
