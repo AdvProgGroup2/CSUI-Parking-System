@@ -68,11 +68,11 @@
 			<span id="guestregisttext">Register Guest</span>
 		</div>
 		<div class = "col-xs-15">
-			<a class = "viewguest" href = "#" onclick = "toggle_visibility('viewguestmenu')"><button class = "btn btn-default btn-circle btn-lg"><i class ="fa fa-man fa-lg"></i></button></a>
+			<a class = "viewguest" href = "#" onclick = "toggle_visibility('viewguestmenu')"><button class = "btn btn-default btn-circle btn-lg"><i class ="fa fa-user fa-lg"></i></button></a>
 			<span id="viewguesttext">View Guests</span>
 		</div>
 		<div class = "col-xs-15">
-			<a class = "viewmember" href = "#" onclick = "toggle_visibility('viewmembermenu'')"><button class = "btn btn-default btn-circle btn-lg"><i class ="fa fa-list-alt fa-lg"></i></button></a>
+			<a class = "viewmember" href = "#" onclick = "toggle_visibility('viewmembermenu')"><button class = "btn btn-default btn-circle btn-lg"><i class ="fa fa-list-alt fa-lg"></i></button></a>
 			<span id="viewmembertext">View Members</span>
 		</div>
 		<div class = "col-xs-15">
@@ -83,7 +83,7 @@
 		</div>
 		
 	</div>
-	<br /><br /><br /><br /><br />
+	<br /><br /><br />
 
 	<div id = "guestregistmenu">	
 		<h2>Register Guest</h2>
@@ -120,10 +120,9 @@
 			</tr>
 		</table>
 	</div>
-	<br/><br/>
 	
 	<div id = "parkspotmenu">
-	<div id = "map">
+	<div id = "map" style="display:block;">
 		<h2>Parking Map</h2><br/>
 		<div id = "tables">
 		<table id = "mapmenu">

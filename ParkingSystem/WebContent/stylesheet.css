@@ -156,6 +156,22 @@ footer.below{
 	display: none;
 }
 
+#parkspottext{
+	display: none;	
+}
+
+#guestregisttext{
+	display: none;
+}
+
+#viewguesttext{
+	display: none;
+}
+
+#viewmembertext{
+	display: none;
+}
+
 #checkinmenu{
 	display: none;
 }
@@ -168,6 +184,18 @@ footer.below{
 #specificspot{
 	display: none;
 	text-align: center;
+}
+
+#guestregistmenu{
+	display:none;
+}
+
+#viewguestmenu{
+	display: none;
+}
+
+#viewmembermenu{
+	display:none;
 }
 
 #getdirections{
