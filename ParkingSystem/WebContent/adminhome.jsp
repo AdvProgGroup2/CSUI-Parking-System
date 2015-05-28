@@ -40,6 +40,8 @@
 	<% 
 		if(session.getAttribute("loginstatus") == "yes"){
 			response.sendRedirect("home.jsp");
+		} else if(session.getAttribute("gueststatus") == "yes"){
+			response.sendRedirect("homeGuest.jsp");
 		} else if(session.getAttribute("adminstatus") == null){
 			response.sendRedirect("index.jsp");
 		} 

@@ -38,7 +38,11 @@
 	<%@ page import="Parking.ConnectDB" %>
 	<%@ page import="Parking.ParkingMap" %>
 	<% 
-		if(session.getAttribute("loginstatus") == null){
+		if(session.getAttribute("loginstatus") == "yes"){
+			response.sendRedirect("home.jsp");
+		} else if(session.getAttribute("adminstatus") == "yes"){
+			response.sendRedirect("adminhome.jsp");
+		} else if(session.getAttribute("gueststatus") == null){
 			response.sendRedirect("index.jsp");
 		}
 	%>
@@ -54,9 +58,9 @@
 			int status = db.checkstatus(i+1);
 			if(status == 1){
 				space.setAvailability(false);
-				param.add("space" + (i+1));
+				param.add(Integer.toString((i+1)));
 			} else if(status == 2){
-				book.add("space" + (i+1));
+				book.add(Integer.toString((i+1)));
 				}
 			lot.addParkingSpace(space);
 			if (space.getId() > 20){
@@ -242,6 +246,19 @@
 				String row = list[0];
 				String col = list[1];
 				int spot = Integer.parseInt(col)+20;
+				String spotstr = Integer.toString(spot);
+				while(book.contains(spotstr) || param.contains(spotstr)){
+					spot += 1;
+					row = Integer.toString((spot/10)+1);
+					col = Integer.toString(spot%10);
+					spotstr = Integer.toString(spot);
+					if(spot > 30){
+						spot = 0;
+						row = "";
+						col = "";
+						break;
+					}
+				}
 			%>
 			
 			document.getElementById("Direction1").innerHTML = "The nearest spot is Space " +<%=spot%>;
@@ -254,6 +271,7 @@
 		<% 
 			for (int i = 0; i<length; i++){
 				String space = (String) param.get(i);
+				space = "space" + space;
 		%>		
 		changecolor('<%=space%>');
 		<%		}%>
@@ -261,6 +279,7 @@
 		<%
 			for(int j = 0; j< booklength; j++){
 				String bookspace = (String) book.get(j);
+				bookspace = "space" + bookspace;
 		%>
 		changebookcolor('<%=bookspace%>');
 		<%	

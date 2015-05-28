@@ -37,6 +37,8 @@
 			response.sendRedirect("home.jsp");
 	} else if(session.getAttribute("adminstatus") == "yes"){
 			response.sendRedirect("adminhome.jsp");
+	} else if(session.getAttribute("gueststatus") == "yes"){
+			response.sendRedirect("homeGuest.jsp");
 	}
 	%>
 	<div id = "welcomemenu">

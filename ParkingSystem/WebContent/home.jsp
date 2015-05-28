@@ -39,6 +39,8 @@
 	<% 
 		if(session.getAttribute("adminstatus") == "yes"){
 			response.sendRedirect("adminhome.jsp");
+		} else if(session.getAttribute("gueststatus") == "yes"){
+			response.sendRedirect("homeGuest.jsp");
 		} else if(session.getAttribute("loginstatus") == null){
 			response.sendRedirect("index.jsp");
 		}
@@ -56,10 +58,10 @@
 			//System.out.println(status);
 			if(status == 1){
 				space.setAvailability(false);
-				param.add("space" + (i+1));
+				param.add(Integer.toString((i+1)));
 				//System.out.println("test");
 			} else if(status == 2){
-				book.add("space" + (i+1));
+				book.add(Integer.toString((i+1)));
 				}
 			lot.addParkingSpace(space);
 		}
@@ -274,7 +276,21 @@
 				String[] list = direct.split(" ");
 				String row = list[0];
 				String col = list[1];
+				//int spaceid = Integer.parseInt(row+col);
 				int spot = Integer.parseInt(row) * Integer.parseInt(col);
+				String spotstr = Integer.toString(spot);
+				while(book.contains(spotstr) || param.contains(spotstr)){
+					spot += 1;
+					row = Integer.toString((spot/10)+1);
+					col = Integer.toString(spot%10);
+					spotstr = Integer.toString(spot);
+					if(spot > 30){
+						spot = 0;
+						row = "";
+						col = "";
+						break;
+					}
+				}
 				
 			%>
 			
@@ -288,12 +304,14 @@
 		<% 
 			for (int i = 0; i<length; i++){
 				String space = (String) param.get(i);
+				space = "space" + space;
 		%>		
 		changecolor('<%=space%>');
 		<%		}%>
 		<%
 			for(int j = 0; j<booklength; j++){
 				String bookspace = (String) book.get(j);
+				bookspace = "space" + bookspace;
 		%>
 		changebookcolor('<%=bookspace%>');
 		<%	

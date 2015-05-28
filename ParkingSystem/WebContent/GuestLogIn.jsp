@@ -15,7 +15,7 @@
 		String username = request.getParameter("guestname");
 		boolean valid = dbconnect.checkGuest(username);
 		if(valid){ 
-			session.setAttribute("loginstatus", "yes");
+			session.setAttribute("gueststatus", "yes");
 			session.setAttribute("username", request.getParameter("guestname"));
 			
 			response.sendRedirect("homeGuest.jsp");

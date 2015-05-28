@@ -16,6 +16,8 @@
 			
 		} else if(session.getAttribute("adminstatus") == "yes"){
 			session.setAttribute("adminstatus", null);
+		} else if(session.getAttribute("gueststatus") == "yes"){
+			session.setAttribute("gueststatus", null);
 		}
 		session.setAttribute("username", null);
 		response.sendRedirect("index.jsp");
