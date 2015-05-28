@@ -40,6 +40,20 @@ public class ParkingMap {
 		}		
 	}
 	
+	public void InitiateGuestMap(){
+		List space = lot.getparkinglist();
+		int index = 0;
+		for (int i = 2; i < noofrow; i++){
+			List temp = new LinkedList();
+			for (int j = 0; j < noofcol; j++){
+				ParkingSpace park = (ParkingSpace) space.get(index);
+				index += 1;
+				temp.add(park);
+			}
+			map.add(temp);
+		}		
+	}
+	
 	public String getdirection(){
 		String row = null,col = null;
 		outerloop:
@@ -56,4 +70,22 @@ public class ParkingMap {
 		}
 		return row + " " +  col;
 	}
+	
+	public String getGuestdirection(){
+		String row = null,col = null;
+		outerloop:
+		for (int i = 2; i < map.size(); i++){
+			List temp = (List) map.get(i);
+			for (int j = 0; j < temp.size(); j++){
+				ParkingSpace space = (ParkingSpace) temp.get(j);
+				if (space.isAvailable){
+					row = Integer.toString(i + 1);
+					col = Integer.toString(j + 1);
+					break outerloop;
+				}
+			}
+		}
+		return row + " " +  col;
+	}
+	
 }
