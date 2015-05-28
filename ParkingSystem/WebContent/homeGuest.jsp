@@ -59,8 +59,7 @@
 		guestlot.checkavailable();
 		int length = param.size();
 		ParkingMap map = new ParkingMap(lot);
-		map.InitiateMap();
-		//System.out.println(map.getdirection());
+		map.InitiateGuestMap();
 	%>
 	<div id = "top">
 		<img src = "carlogo.png" alt = "csuiparkingsystemlogo">
@@ -229,18 +228,17 @@
 		}
 		function getdirection(){
 			<%
-				String direct = map.getdirection();
+				String direct = map.getGuestdirection();
 				String[] list = direct.split(" ");
 				String row = list[0];
 				String col = list[1];
-				int spot = Integer.parseInt(row) * Integer.parseInt(col);
-				
+				int spot = Integer.parseInt(col)+20;
 			%>
 			
 			document.getElementById("Direction1").innerHTML = "The nearest spot is Space " +<%=spot%>;
 			document.getElementById("Direction2").innerHTML = "<br>HOW TO GET THERE? <br>";
 			document.getElementById("Direction3").innerHTML = "Take the turn no. "+<%=row%>+" to the left <br>";
-			document.getElementById("Direction4").innerHTML = "Straight ahead, the available space is the space no. " +<%=col%>+" <br>";
+			document.getElementById("Direction4").innerHTML = "Straight ahead, the available space is the space no. " +<%=spot%>+" <br>";
 			
 		}
 
