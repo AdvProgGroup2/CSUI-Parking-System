@@ -24,6 +24,7 @@ public class ParkingMap {
 		this.noofcol = 10;
 		this.map = new LinkedList();
 		InitiateMap();
+		InitiateGuestMap();
 	}
 	
 	public void InitiateMap(){

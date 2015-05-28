@@ -23,6 +23,10 @@
 			var y = document.getElementById(id);
 			y.style.backgroundColor = "red";
 		}
+		function changebookcolor(id){
+			var b = document.getElementById(id);
+			b.style.backgroundColor = '#65C6BB';
+		}
 	</script>
 </head>
 
@@ -43,6 +47,7 @@
 		ConnectDB db = new ConnectDB();
 		ParkingLot lot = new ParkingLot();
 		LinkedList param = new LinkedList();
+		LinkedList book = new LinkedList();
 		//MainProgram.InitParkingSpace(lot);
 		String username = (String) session.getAttribute("username");
 		for (int i = 0; i < 30; i++){
@@ -53,11 +58,14 @@
 				space.setAvailability(false);
 				param.add("space" + (i+1));
 				//System.out.println("test");
-			}
+			} else if(status == 2){
+				book.add("space" + (i+1));
+				}
 			lot.addParkingSpace(space);
 		}
 		lot.checkavailable();
 		int length = param.size();
+		int booklength = book.size();
 		ParkingMap map = new ParkingMap(lot);
 		map.InitiateMap();
 		//System.out.println(map.getdirection());
@@ -124,7 +132,7 @@
  				System.out.println(db.checkbook(username));
  				if ((db.checkbook(username))){
  					if (id == db.getid(username)){
- 						System.out.println("Congratulations, you have signed in to your destired spot!");
+ 						System.out.println("Congratulations, you have signed in to your desired spot!");
  						db.updatelot(id, 1, username);
  					} else{
  						System.out.println("You cannot check in here!");
@@ -283,6 +291,14 @@
 		%>		
 		changecolor('<%=space%>');
 		<%		}%>
+		<%
+			for(int j = 0; j<booklength; j++){
+				String bookspace = (String) book.get(j);
+		%>
+		changebookcolor('<%=bookspace%>');
+		<%	
+			}
+		%>	
 
 		
 	</script>
