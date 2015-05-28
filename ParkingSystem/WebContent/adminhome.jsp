@@ -23,6 +23,11 @@
 			var y = document.getElementById(id);
 			y.style.backgroundColor = "red";
 		}
+		
+		function changebookcolor(id){
+			var b = document.getElementById(id);
+			b.style.backgroundColor = '#65C6BB';
+		}
 	</script>
 </head>
 
@@ -43,6 +48,7 @@
 		ConnectDB db = new ConnectDB();
 		ParkingLot lot = new ParkingLot();
 		LinkedList param = new LinkedList();
+		LinkedList book = new LinkedList();
 		//MainProgram.InitParkingSpace(lot);
 		String username = (String) session.getAttribute("username");
 		for (int i = 0; i < 30; i++){
@@ -53,11 +59,14 @@
 				space.setAvailability(false);
 				param.add("space" + (i+1));
 				//System.out.println("test");
-			}
+			} else if(status == 2){
+				book.add("space" + (i+1));
+				}
 			lot.addParkingSpace(space);
 		}
 		lot.checkavailable();
 		int length = param.size();
+		int booklength = book.size();
 	%>
 	<div id = "top">
 		<img src = "carlogo.png" alt = "csuiparkingsystemlogo">
@@ -183,6 +192,13 @@
 		%>		
 		changecolor('<%=space%>');
 		<%		}%>
+		
+		<%
+		for (int j = 0; j<booklength; j++){
+			String bookspace = (String) book.get(j);
+		%>
+		changebookcolor('<%=bookspace%>');
+		<% } %>
 		
 		<%
 		LinkedList guestlist = db.getguest();
