@@ -3,10 +3,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<script type="text/javascript">
-		
-		
-</script>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Check Booking</title>
 </head>
@@ -27,7 +23,7 @@
 				int booking = Integer.parseInt(bookingnumber);
 				int stat = db.checkstatus(booking);
 			 	if (stat == 0){
-					System.out.println("You have successfully booked in!");
+					System.out.println("You have successfully checked in!");
 					db.updatelot(booking, 2, username);
 				}
 				else{
@@ -40,7 +36,6 @@
 /* 				System.out.println("You cannot leave this empty."); */
 	}
 	response.sendRedirect("home.jsp");
-	%>
-	
+	 %>
 </body>
 </html>
