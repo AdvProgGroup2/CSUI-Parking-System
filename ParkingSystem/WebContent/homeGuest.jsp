@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1" import="java.util.*"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
 	<title>CSUI Parking System</title>
@@ -28,10 +28,14 @@
 			var b = document.getElementById(id);
 			b.style.backgroundColor = '#65C6BB';
 		}
+		function humaneLogin(){
+			var user = "<%=session.getAttribute("username")%>";
+			humane.log(user + " is logged in!");
+		}
 	</script>
 </head>
 
-<body>
+<body onload = "humaneLogin();">
 	<%@ page import="Parking.ParkingSpace" %>
 	<%@ page import="Parking.ParkingLot" %>
 	<%@ page import="Parking.MainProgram" %>

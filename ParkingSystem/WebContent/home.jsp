@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1" import="java.util.*"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
 	<title>CSUI Parking System</title>
@@ -10,7 +10,10 @@
 	<link href = "bootstrap.min.css" rel = "stylesheet">
 	<link href = "stylesheet.css" rel="stylesheet">
 	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+	<link rel = "stylesheet" href = "flatty.css">
 	<script src = "bootstrap.min.js"></script>
+	<script src = "humane.min.js"></script>
+	<script src = "notify.js"></script>
 	<script type="text/javascript">
 	    function toggle_visibility(id) {
 	       var e = document.getElementById(id);
@@ -27,10 +30,18 @@
 			var b = document.getElementById(id);
 			b.style.backgroundColor = '#65C6BB';
 		}
+		
+		function humaneLogin(){
+			var log = true;
+			if (log){
+				var user = "<%=session.getAttribute("username")%>";
+				humane.log(user + " is logged in!");
+			}
+		}
 	</script>
 </head>
 
-<body>
+<body onload = "humaneLogin()">
 	<%@ page import="Parking.ParkingSpace" %>
 	<%@ page import="Parking.ParkingLot" %>
 	<%@ page import="Parking.MainProgram" %>
@@ -44,6 +55,7 @@
 		} else if(session.getAttribute("loginstatus") == null){
 			response.sendRedirect("index.jsp");
 		}
+		//System.out.println(session.getAttribute("loginstatus"));
 	%>
 	<%
 		ConnectDB db = new ConnectDB();
@@ -276,7 +288,6 @@
 				String[] list = direct.split(" ");
 				String row = list[0];
 				String col = list[1];
-				//int spaceid = Integer.parseInt(row+col);
 				int spot = Integer.parseInt(row) * Integer.parseInt(col);
 				String spotstr = Integer.toString(spot);
 				while(book.contains(spotstr) || param.contains(spotstr)){
@@ -309,7 +320,7 @@
 		changecolor('<%=space%>');
 		<%		}%>
 		<%
-			for(int j = 0; j<booklength; j++){
+			for(int j = 0; j < booklength; j++){
 				String bookspace = (String) book.get(j);
 				bookspace = "space" + bookspace;
 		%>

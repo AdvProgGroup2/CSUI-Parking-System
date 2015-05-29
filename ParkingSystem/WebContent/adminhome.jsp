@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1" import="java.util.*"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
 	<title>CSUI Parking System</title>
@@ -10,7 +10,6 @@
 	<link href = "bootstrap.min.css" rel = "stylesheet">
 	<link href = "stylesheet.css" rel="stylesheet">
 	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
-	<script src = "bootstrap.min.js"></script>
 	<script type="text/javascript">
 	    function toggle_visibility(id) {
 	       var e = document.getElementById(id);
@@ -40,9 +39,11 @@
 	<% 
 		if(session.getAttribute("loginstatus") == "yes"){
 			response.sendRedirect("home.jsp");
-		} else if(session.getAttribute("gueststatus") == "yes"){
-			response.sendRedirect("homeGuest.jsp");
-		} else if(session.getAttribute("adminstatus") == null){
+		}
+		else if(session.getAttribute("gueststatus") == "yes"){
+			response.sendRedirect("homeGuest.jsp"); 
+		}
+		else if(session.getAttribute("adminstatus") == null){
 			response.sendRedirect("index.jsp");
 		} 
 	%>
@@ -107,12 +108,130 @@
 	<div id = "guestregistmenu">	
 		<h2>Register Guest</h2>
 		<form name = "guestregisterform" method = "post" action="GuestRegister.jsp">
-			<p>Guest Name <input type = "text" name = "guestname"></p>
-			<p>Phone Number <input type = "text" name = "phonenumber"></p>
+			<p>Guest Name <input type = "text" name = "guestname" class="form-control name" 
+					data-placement="bottom" data-trigger="manual" data-content="Must be at least 3 characters long."></p>
+			<p>Phone Number <input type = "text" name = "phonenumber" class="form-control phone" 
+					data-placement="bottom" data-trigger="manual" data-content="Must contain numbers."></p>
 			<button type="submit" value="Submit" class="btn btn-submit">Submit</button>
 		</form>
 	</div>
 	<br/><br/>
+	
+	<script src="http://code.jquery.com/jquery-latest.js"></script>
+	<script src = "bootstrap.min.js"></script>
+	<script type = "text/javascript">
+	$.fn.goValidate = function() {
+    	    var $form = this,
+    	        $inputs = $form.find('input:text, input:password'),
+    	        $selects = $form.find('select'),
+    	        $textAreas = $form.find('textarea');
+    	  
+    	    var validators = {
+    	        name: {
+    	            regex: /^[A-Za-z]{3,}$/
+    	        },
+    	        username: {
+    	            regex: /^[A-Za-z\.]{4,}$/
+    	        },
+    	        userid: {
+    	            regex: /^[0-9]{4,10}$/
+    	        },
+    	        password: {
+    	            regex: /^[a-zA-z0-9]{3,8}$/
+    	        },
+    	        phone: {
+    	            regex: /^[0-9]{5,}$/,
+    	        }
+    	    };
+    	    var validate = function(klass, value) {
+    	        var isValid = true,
+    	            error = '';
+    	            
+    	        if (!value && /required/.test(klass)) {
+    	            error = 'This field is required';
+    	            isValid = false;
+    	        } else {
+    	            klass = klass.split(/\s/);
+    	            $.each(klass, function(i, k){
+    	                if (validators[k]) {
+    	                    if (value && !validators[k].regex.test(value)) {
+    	                        isValid = false;
+    	                        error = validators[k].error;
+    	                    }
+    	                }
+    	            });
+    	        }
+    	        return {
+    	            isValid: isValid,
+    	            error: error
+    	        }
+    	    };
+    	    var showError = function($e) {
+    	        var klass = $e.attr('class'),
+    	            value = $e.val(),
+    	            test = validate(klass, value);
+    	      
+    	        $e.removeClass('invalid');
+    	        $('#form-error').addClass('hide');
+    	        
+    	        if (!test.isValid) {
+    	            $e.addClass('invalid');
+    	            
+    	            if(typeof $e.data("shown") == "undefined" || $e.data("shown") == false){
+    	               $e.popover('show');
+    	            }
+    	            
+    	        }
+    	      else {
+    	        $e.popover('hide');
+    	      }
+    	    };
+    	   
+    	    $inputs.keyup(function() {
+    	        showError($(this));
+    	    });
+    	    $selects.change(function() {
+    	        showError($(this));
+    	    });
+    	    $textAreas.keyup(function() {
+    	        showError($(this));
+    	    });
+    	  
+    	    $inputs.on('shown.bs.popover', function () {
+    	  		$(this).data("shown",true);
+    		});
+    	  
+    	    $inputs.on('hidden.bs.popover', function () {
+    	  		$(this).data("shown",false);
+    		});
+    	  
+    	    $form.submit(function(e) {
+    	      
+    	        $inputs.each(function() { /* test each input */
+    	        	if ($(this).is('.required') || $(this).hasClass('invalid')) {
+    	            	showError($(this));
+    	        	}
+    	    	});
+    	    	$selects.each(function() { /* test each input */
+    	        	if ($(this).is('.required') || $(this).hasClass('invalid')) {
+    	            	showError($(this));
+    	        	}
+    	    	});
+    	    	$textAreas.each(function() { /* test each input */
+    	        	if ($(this).is('.required') || $(this).hasClass('invalid')) {
+    	            	showError($(this));
+    	        	}
+    	    	});
+    	        if ($form.find('input.invalid').length) { /* form is not valid */
+    	        	e.preventDefault();
+    	            $('#form-error').toggleClass('hide');
+    	        }
+    	    });
+    	    return this;
+    	};
+
+    	$('form').goValidate();
+    </script>
 	
 	<div id = "viewguestmenu">	
 		<h2>List of Guests</h2>

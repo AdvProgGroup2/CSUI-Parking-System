@@ -68,7 +68,7 @@ public class ParkingLot {
 					if(park.getAvailability()){
 						park.setAvailability(false);
 						checkavailable();
-						System.out.println("Check In Succesful\n");
+						System.out.println("Check In Successful\n");
 					} else{
 						System.out.println("Cannot Check In at the specific spot\n");
 					}
@@ -88,7 +88,7 @@ public class ParkingLot {
 					if(!park.getAvailability()){
 						park.setAvailability(true);
 						checkavailable();
-						System.out.println("Check out Succesful\n");
+						System.out.println("Check out Successful\n");
 					} else{
 						System.out.println("Cannot Check out at the specific spot\n");
 					}
