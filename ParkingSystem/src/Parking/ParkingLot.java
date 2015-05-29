@@ -41,6 +41,7 @@ public class ParkingLot {
 	
 	public void checkavailable(){
 		available = 0;
+		availableguest = 0;
 		for(int i = 0; i < parkinglist.size(); i++){
 			ParkingSpace space = (ParkingSpace)parkinglist.get(i);
 			if(space.getAvailability()){

@@ -2,11 +2,16 @@
  * Unit testing for parking map's get direction.
  */
 
-package Parking;
+package Test;
 
 import static org.junit.Assert.*;
 
 import org.junit.Test;
+
+import Parking.MainProgram;
+import Parking.ParkingLot;
+import Parking.ParkingMap;
+import Parking.ParkingSpace;
 
 public class mapunittesting {
 

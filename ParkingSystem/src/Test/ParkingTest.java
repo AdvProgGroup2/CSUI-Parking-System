@@ -1,8 +1,11 @@
-package Parking;
+package Test;
 
 import static org.junit.Assert.*;
 
 import org.junit.Test;
+
+import Parking.ParkingLot;
+import Parking.ParkingSpace;
 
 public class ParkingTest {
 
