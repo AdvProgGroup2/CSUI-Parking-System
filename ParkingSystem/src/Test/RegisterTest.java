@@ -45,17 +45,6 @@ public class RegisterTest {
 		boolean usery3 = test.insertData(npm, username, pass, full_name, role);
 		assertEquals(false, usery2);
 		
-		//test if the username, npm and everything is a new information
-		//and does not exist in the database. The expected result is that
-		//it will be a success and they can register into the system.
-		String full_name1 = "new name";
-		String role1 = "new role";
-		String npm1 = "new npm";
-		String username1 = "new username";
-		String pass1 = "new pass";
-		boolean usernew = test.insertData(npm1, username1, pass1, full_name1, role1);
-		assertEquals(true, usernew);
-		
 		//test if the username exists in the database.
 		//expected result should be false.
 		String username5 = "hakeem";
